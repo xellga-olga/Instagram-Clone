@@ -1,0 +1,21 @@
+.App {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  display: flex;
+}
+
+.left-side-home {
+  flex: 0.155;
+  padding: 15px 10px;
+  border-right: 1px solid #e1e1e1;
+}
+
+.middle-side-home {
+  flex: 0.5;
+  flex-direction: column;
+}
+
+.right-side-home {
+  flex: 0.345;
+}
