@@ -8,12 +8,13 @@
 .left-side-home {
   flex: 0.155;
   padding: 15px 10px;
-  border-right: 1px solid #e1e1e1;
+  position: relative;
 }
 
 .middle-side-home {
   flex: 0.5;
   flex-direction: column;
+  border-left: 1px solid #b5b5b5;
 }
 
 .right-side-home {

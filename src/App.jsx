@@ -1,5 +1,7 @@
 import './App.css'
 import LeftSide from "./components/LeftSide/LeftSide.jsx";
+import MiddleSide from "./components/MiddleSide/MiddleSide.jsx";
+import RightSide from "./components/RightSide/RightSide.jsx";
 
 function App() {
 
@@ -14,12 +16,12 @@ function App() {
 
       {/*Middle side*/}
       <div className='middle-side-home'>
-        Middle side
+        <MiddleSide />
       </div>
 
       {/*Right side*/}
       <div className='right-side-home'>
-        Right side
+        <RightSide />
       </div>
 
     </div>
