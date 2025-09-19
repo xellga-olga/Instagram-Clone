@@ -6,17 +6,17 @@
 }
 
 .left-side-home {
-  flex: 0.155;
+  flex: 0.18;
   padding: 15px 10px;
   position: relative;
 }
 
 .middle-side-home {
-  flex: 0.5;
+  flex: 0.4;
   flex-direction: column;
-  border-left: 1px solid #b5b5b5;
+  border-left: 1px solid rgb(204, 204, 204);
 }
 
 .right-side-home {
-  flex: 0.345;
+  flex: 0.3;
 }

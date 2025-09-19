@@ -1,0 +1,158 @@
+.right-side {
+    display: flex;
+    flex-direction: column;
+    padding-top: 30px;
+    width: 100%;
+    padding-left: 60px;
+}
+
+.user-profile {
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    align-items: center;
+}
+
+.user-block {
+    display: flex;
+    gap: 5px;
+}
+
+.user {
+    width: 45px;
+    height: 45px;
+    border-radius: 100%;
+    border: 1px solid rgba(126, 126, 126, 0.62);
+}
+
+.profile_image_right-side {
+    width: 100%;
+    border-radius: 100%;
+    cursor: pointer;
+}
+
+.user-name {
+    display: flex;
+    cursor: pointer;
+}
+
+.user-nickname {
+    font-size: 15px;
+    font-weight: bold;
+    padding-left: 10px;
+}
+
+.switch-btn {
+    color: blue;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    cursor: pointer;
+    background: none;
+}
+
+.switch-btn:hover {
+    text-decoration: underline;
+}
+
+
+
+.users-recommendation {
+    margin-top: 10px;
+    display: flex;
+    justify-content: space-between;
+    width: 90%;
+    align-items: center;
+}
+
+.users-recommendation p{
+    color: #858585;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+.recommendation-btn {
+    border: none;
+    outline: none;
+    font-size: 12px;
+    cursor: pointer;
+    background: none;
+    font-weight: bold;
+    color: #2e2e2e;
+    transition: color 0.2s ease ;
+}
+
+.recommendation-btn:hover {
+    color: #7c7c7c;
+}
+
+.recommendation-users-profile {
+    display: flex;
+    flex-direction: column;
+    width: 90%;
+}
+
+
+
+.users {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+}
+
+.users-info {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.img-rec-users {
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    border: 1px solid rgba(126, 126, 126, 0.62);
+}
+
+.users-text {
+    display: flex;
+    flex-direction: column;
+}
+
+.usersName {
+    font-weight: bold;
+    font-size: 14px;
+    cursor: pointer;
+}
+
+.users-text p {
+    font-size: 12px;
+    margin: 0;
+    color: #858585;
+}
+
+.follow-btn {
+    color: blue;
+    border: none;
+    outline: none;
+    font-size: 12px;
+    cursor: pointer;
+    background: none;
+    font-weight: bold;
+    transition: color 0.2s ease ;
+}
+
+.follow-btn:hover {
+    color: #09009c;
+}
+
+.copyright {
+    text-transform: uppercase;
+    font-size: 12px;
+    margin-top: 10px;
+}
+
+.copyright p {
+    color: rgb(204, 204, 204);
+}
