@@ -1,0 +1,11 @@
+.loginPage {
+    height: 100vh;
+}
+
+
+@media screen and (min-width: 320px) and (max-width: 920px) {
+
+    .loginImage {
+        display: none;
+    }
+}
