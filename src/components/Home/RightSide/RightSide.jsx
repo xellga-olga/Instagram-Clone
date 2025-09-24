@@ -1,6 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './rightSide.css'
-import profile_image from "../../assets/profile_image.jpg";
+import profile_image from "../../../assets/profile_image.jpg";
 
 const RightSide = () => {
   const [users, setUsers] = useState([])

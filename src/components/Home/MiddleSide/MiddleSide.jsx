@@ -1,6 +1,6 @@
 import React from 'react';
 import './middleSide.css'
-import inst_logo from '../../assets/inst_logo.png'
+import inst_logo from '../../../assets/inst_logo.png'
 import StoryBlock from "./StoryBlock/StoryBlock.jsx";
 import PostBlock from "./PostBlock/PostBlock.jsx";
 

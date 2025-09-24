@@ -1,8 +1,8 @@
 import React from 'react';
 import './leftSide.css'
-import inst_logo from '../../assets/inst_logo.png'
+import inst_logo from '../../../assets/inst_logo.png'
 import {AtSign, Compass, Film, Heart, House, Menu, MessageCircle, Search, SquarePlus} from 'lucide-react';
-import profile_image from '../../assets/profile_image.jpg'
+import profile_image from '../../../assets/profile_image.jpg'
 
 const LeftSide = () => {
   return (
