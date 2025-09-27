@@ -6,12 +6,7 @@ import RightSide from "./RightSide/RightSide.jsx";
 
 const Home = () => {
   return (
-    <div className='App'>
-      {/*Left side*/}
-      <div className='left-side-home'>
-        <LeftSide />
-      </div>
-
+    <div className='home-container'>
       {/*Middle side*/}
       <div className='middle-side-home'>
         <MiddleSide />

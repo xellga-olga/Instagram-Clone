@@ -5,21 +5,36 @@
   box-sizing: border-box;
 }
 
+.home-container {
+  display: flex;
+  height: 100%;
+}
+
 .left-side-home {
-  flex: 0.18;
+  flex: 0 0 220px;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  border-right: 1px solid rgb(204, 204, 204);
   padding: 15px 10px;
-  position: relative;
+  background: #fff;
 }
 
 .middle-side-home {
-  flex: 0.4;
   flex-direction: column;
-  box-sizing: border-box;
-  border-left: 1px solid rgb(204, 204, 204);
+  flex: 1;
+  margin-top: 10px;
+  overflow-y: auto;
 }
 
 .right-side-home {
-  flex: 0.3;
+  flex: 0 0 35%;
+  position: sticky;
+  top: 0;
+  height: 100vh;
+  overflow-y: auto;
+  padding-left: 40px;
+  box-sizing: border-box;
 }
 
 @media screen and (min-width: 920px) and (max-width: 1140px) {
@@ -30,7 +45,7 @@
     flex: 0.2;
   }
   .middle-side-home {
-    flex: 0.2;
+
   }
 }
 

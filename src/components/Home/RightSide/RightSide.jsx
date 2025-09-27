@@ -1,6 +1,7 @@
 import React, {useEffect, useState} from 'react';
 import './rightSide.css'
 import profile_image from "../../../assets/profile_image.jpg";
+import {Link} from 'react-router-dom';
 
 const RightSide = () => {
   const [users, setUsers] = useState([])
@@ -18,9 +19,11 @@ const RightSide = () => {
           <div className='user'>
             <img src={profile_image} alt='profile image' className='profile_image_right-side'/>
           </div>
+
           <div className='user-name'>
-            <p className='user-nickname'>olya__pla</p>
+            <Link to='/profile/olya__pla' className='user-nickname'>olya__pla</Link>
           </div>
+
         </div>
         <button className='switch-btn'>
           Switch

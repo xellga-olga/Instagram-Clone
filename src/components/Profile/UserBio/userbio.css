@@ -1,0 +1,84 @@
+.userBio {
+    display: flex;
+    justify-content: center;
+    padding: 30px 0;
+    margin: 0 auto;
+
+}
+
+.imageUserBio {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-right: 70px;
+    border: 1px solid #dbdbdb;
+}
+
+
+.userBioInfo {
+    display: flex;
+    flex-direction: column;
+}
+
+/*-----------------TOP-----------------*/
+.topLine {
+    display: flex;
+    align-items: center;
+    gap: 50px;
+    margin-bottom: 20px;
+}
+
+.userBioNickname {
+    font-size: 22px;
+    font-weight: 400;
+}
+
+.btnProfileUserBio button {
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-left: 10px;
+    border: none;
+}
+
+
+.btnSettingsUserBio {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-size: 20px;
+    color: #262626;
+}
+
+.btnSettingsUserBio svg {
+    width: 24px;
+    height: 24px;
+}
+
+/*-----------------BOTTOM-----------------*/
+.bottomLine {
+    margin-top: 20px;
+}
+
+.bottomLine ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    margin-bottom: 20px;
+}
+
+.bottomLine li {
+    font-size: 16px;
+    color: #535353;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.bottomLine li strong {
+    font-weight: 600;
+    color: #000000;
+}

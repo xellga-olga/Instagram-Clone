@@ -1,9 +1,12 @@
 .right-side {
+    position: sticky;
+    top: 0;
+    height: 100vh;
     display: flex;
     flex-direction: column;
     padding-top: 30px;
-    width: 100%;
-    padding-left: 60px;
+    padding-right: 30px;
+    box-sizing: border-box;
 }
 
 .user-profile {
@@ -40,6 +43,10 @@
     font-size: 15px;
     font-weight: bold;
     padding-left: 10px;
+    color: black;
+    text-decoration: none;
+    display: flex;
+    align-items: center;
 }
 
 .switch-btn {
