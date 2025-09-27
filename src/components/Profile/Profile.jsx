@@ -8,8 +8,8 @@ const Profile = () => {
   return (
       <div className="userBioProfile">
         <UserBio />
-        <StoryHighlights />
         <div className='userContent'>
+          <StoryHighlights />
           <CardUserProfile className="userPageCard" />
         </div>
       </div>

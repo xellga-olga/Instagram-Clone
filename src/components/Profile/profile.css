@@ -8,7 +8,6 @@
 .userContent {
     display: flex;
     flex-wrap: wrap;
-    padding-top: 100px;
     padding-left: 10px;
     width: 930px;
 }
