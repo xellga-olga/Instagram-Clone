@@ -6,6 +6,7 @@ import Home from "./components/Home/Home.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import LeftSide from "./components/Home/LeftSide/LeftSide.jsx";
 import React from "react";
+import Explore from "./components/Explore/Explore.jsx";
 
 function App() {
   return (
@@ -21,6 +22,7 @@ function App() {
 
           <Route path='/' element={<Home/>}/>
           <Route path='/profile/:username' element={<Profile/>}/>
+          <Route path='/explore' element={<Explore/>} />
         </Routes>
       </div>
     </div>

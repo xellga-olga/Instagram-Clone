@@ -41,7 +41,7 @@ const LeftSide = () => {
           <SquarePlus size={25}/>
           <div className='navHome'>Create</div>
         </NavLink>
-        <NavLink to='/profile' className='navlink'>
+        <NavLink to='/profile/olya__pla' className='navlink'>
           <img src={profile_image} alt='profile image' className='profile_image' />
           <div className='navHome'>Profile</div>
         </NavLink>
