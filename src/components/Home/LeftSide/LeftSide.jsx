@@ -1,11 +1,12 @@
-import React from 'react';
+import React, {useState} from 'react';
 import './leftSide.css'
 import inst_logo from '../../../assets/inst_logo.png'
 import {AtSign, Compass, Film, Heart, House, Menu, MessageCircle, Search, SquarePlus} from 'lucide-react';
 import profile_image from '../../../assets/profile_image.jpg'
 import {NavLink} from "react-router-dom";
 
-const LeftSide = () => {
+const LeftSide = ({setSearchOpen}) => {
+
   return (
     <div className='left-side'>
       <div  className='logoPart'>
@@ -17,10 +18,18 @@ const LeftSide = () => {
           <House size={25}/>
           <div className='navHome'>Home</div>
         </NavLink>
-        <NavLink to='/search' className='navlink'>
+
+        <NavLink to='#'
+                 className='navlink'
+                 onClick={(e) =>
+                 {e.preventDefault();
+                   setSearchOpen(true);
+                 }}
+        >
           <Search size={25}/>
           <div className='navHome'>Search</div>
         </NavLink>
+
         <NavLink to='/explore' className='navlink'>
           <Compass size={25}/>
           <div className='navHome'>Explore</div>

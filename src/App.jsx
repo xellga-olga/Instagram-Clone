@@ -5,14 +5,17 @@ import {Route, Routes} from "react-router-dom";
 import Home from "./components/Home/Home.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import LeftSide from "./components/Home/LeftSide/LeftSide.jsx";
-import React from "react";
+import React, {useState} from "react";
 import Explore from "./components/Explore/Explore.jsx";
+import Search from "./components/Search/Search.jsx";
 
 function App() {
+  const [searchOpen, setSearchOpen] = useState(false);
+
   return (
     <div className="App">
       <div className='left-side-home'>
-        <LeftSide/>
+        <LeftSide setSearchOpen={setSearchOpen}/>
       </div>
 
       <div className='middle-side-home'>
@@ -21,9 +24,14 @@ function App() {
           <Route path='/signup' element={<SignUp/>}/>
 
           <Route path='/' element={<Home/>}/>
-          <Route path='/profile/:username' element={<Profile/>}/>
+          <Route path='/profile/:username' element={<Profile/>} />
           <Route path='/explore' element={<Explore/>} />
         </Routes>
+
+        {searchOpen && (
+          <Search onClose={() => setSearchOpen(false)} />
+        )}
+
       </div>
     </div>
   )
