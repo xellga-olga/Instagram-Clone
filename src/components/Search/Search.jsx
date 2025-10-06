@@ -1,5 +1,9 @@
 import React from 'react';
-import './search.css'
+import './search.css';
+import { Search as SearchIcon } from 'lucide-react';
+import { CircleX } from 'lucide-react';
+
+
 
 const Search = ({onClose}) => {
   return (
@@ -9,16 +13,20 @@ const Search = ({onClose}) => {
     >
       <div className='search' onClick={(e) => e.stopPropagation()}>
 
-        <div>
+        <div className='searchRequest'>
           <h2>Search request</h2>
-          <input type='text' name='search' placeholder='Search'/>
+          <div className='searchInput'>
+            <SearchIcon className='searchIcon' />
+            <input type='text' name='search' placeholder='Search' />
+            <CircleX className='closeIcon' size={15}/>
+          </div>
         </div>
 
         <div>
           <p>Recently</p>
         </div>
 
-        <div>
+        <div className='searchResults'>
           No recent requests.
         </div>
       </div>

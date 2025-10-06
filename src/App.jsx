@@ -8,6 +8,7 @@ import LeftSide from "./components/Home/LeftSide/LeftSide.jsx";
 import React, {useState} from "react";
 import Explore from "./components/Explore/Explore.jsx";
 import Search from "./components/Search/Search.jsx";
+import NotPersonalized from "./components/Explore/NotPersonalized.jsx";
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -26,6 +27,7 @@ function App() {
           <Route path='/' element={<Home/>}/>
           <Route path='/profile/:username' element={<Profile/>} />
           <Route path='/explore' element={<Explore/>} />
+          <Route path='/explore/not_personolized' element={<NotPersonalized />} />
         </Routes>
 
         {searchOpen && (

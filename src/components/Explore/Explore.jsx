@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './explore.css'
+import {useNavigate} from "react-router-dom";
 
 const Explore = () => {
   const [explore, setExplore] = useState([])
@@ -12,13 +13,17 @@ const Explore = () => {
     .then(data => setExplore(data))
   },[])
 
+  const navigate = useNavigate();
 
+  const handleClickNotPersonolized = () => {
+    navigate('/explore/not_personolized');
+  }
 
   return (
     <div className='exploreContainer'>
       <div className='explore' >
         <p  tabIndex="0">For you</p>
-        <p  tabIndex="0">Not personalized</p>
+        <p  tabIndex="0" onClick={handleClickNotPersonolized}>Not personalized</p>
       </div>
       <div className='exploreContent'>
         {explore.map((item, index) => (
