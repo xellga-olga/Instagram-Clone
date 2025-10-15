@@ -1,0 +1,65 @@
+.reel {
+  position: relative;
+  width: 300px;
+  height: 500px;
+  margin: 20px 0;
+  scroll-snap-align: start;
+  display: flex;
+  justify-content: center;
+}
+
+.reels {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  overflow-y: auto;
+  scrollbar-width: none;
+  padding: 20px 0;
+}
+
+
+.reelsVideo {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 12px;
+}
+
+.reelSidebar {
+  position: absolute;
+  right: -50px;
+  bottom: 60px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 18px;
+}
+
+.reelIcon {
+  color: #2e2e2e;
+  width: 26px;
+  height: 26px;
+  cursor: pointer;
+}
+
+
+.reelAvatar {
+  width: 35px;
+  height: 35px;
+  border-radius: 25%;
+  border: 2px solid #fff;
+  margin-top: 10px;
+}
+
+
+@media (max-width: 420px) {
+  .reel {
+    width: 90vw;
+    height: calc(90vw * 1.777);
+  }
+
+  .reelSidebar {
+    right: 12px;
+    bottom: 50px;
+  }
+}

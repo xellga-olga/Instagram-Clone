@@ -9,6 +9,7 @@ import React, {useState} from "react";
 import Explore from "./components/Explore/Explore.jsx";
 import Search from "./components/Search/Search.jsx";
 import NotPersonalized from "./components/Explore/NotPersonalized.jsx";
+import Reels from "./components/Reels/Reels.jsx";
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -28,6 +29,7 @@ function App() {
           <Route path='/profile/:username' element={<Profile/>} />
           <Route path='/explore' element={<Explore/>} />
           <Route path='/explore/not_personolized' element={<NotPersonalized />} />
+          <Route path='/reels' element={<Reels />} />
         </Routes>
 
         {searchOpen && (
