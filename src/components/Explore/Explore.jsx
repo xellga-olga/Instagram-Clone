@@ -1,29 +1,29 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import './explore.css'
 import {useNavigate} from "react-router-dom";
+import ApiContext from '../../ApiContext.js';
+
 
 const Explore = () => {
   const [explore, setExplore] = useState([])
 
-  const key = import.meta.env.VITE_UNSPLASH_KEY
+  const { getExplorePersonalized } = useContext(ApiContext);
 
   useEffect(() => {
-    fetch(`https://api.unsplash.com/photos/random?count=30&client_id=${key}`)
-    .then(res => res.json())
-    .then(data => setExplore(data))
-  },[])
+    getExplorePersonalized().then(setExplore);
+  }, [getExplorePersonalized]);
 
   const navigate = useNavigate();
 
-  const handleClickNotPersonolized = () => {
-    navigate('/explore/not_personolized');
+  const handleClickNotPersonalized = () => {
+    navigate('/explore/not_personalized');
   }
 
   return (
     <div className='exploreContainer'>
       <div className='explore' >
         <p  tabIndex="0">For you</p>
-        <p  tabIndex="0" onClick={handleClickNotPersonolized}>Not personalized</p>
+        <p  tabIndex="0" onClick={handleClickNotPersonalized}>Not personalized</p>
       </div>
       <div className='exploreContent'>
         {explore.map((item, index) => (

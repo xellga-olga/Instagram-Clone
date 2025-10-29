@@ -1,27 +1,28 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import {useNavigate} from "react-router-dom";
+import ApiContext from "../../ApiContext.js";
 
 const NotPersonalized = () => {
   const [explore, setExplore] = useState([])
 
   const navigate = useNavigate();
 
+  const { getExploreNotPersonalized } = useContext(ApiContext);
+
 
   useEffect(() => {
-    fetch('https://picsum.photos/v2/list?page=2&limit=30')
-      .then(res => res.json())
-      .then(data => setExplore(data))
-  },[])
+    getExploreNotPersonalized().then(setExplore);
+  }, [getExploreNotPersonalized]);
 
-  const handleClickPersonolized = () => {
+  const handleClickPersonalized = () => {
     navigate('/explore');
   }
 
   return (
     <div className='exploreContainer'>
       <div className='explore'>
-        <p tabIndex="0" onClick={handleClickPersonolized}>For you</p>
-        <p tabIndex="0" >Not personalized</p>
+        <p tabIndex="0" onClick={handleClickPersonalized}>For you</p>
+        <p tabIndex="0">Not personalized</p>
       </div>
       <div className='exploreContent'>
         {explore.map((item) => (

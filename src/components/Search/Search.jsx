@@ -1,20 +1,20 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, useContext} from 'react';
 import './search.css';
 import { Search as SearchIcon } from 'lucide-react';
 import { CircleX } from 'lucide-react';
 import { BadgeCheck } from 'lucide-react';
+import ApiContext from '../../ApiContext';
 
 
 
 
 const Search = ({onClose}) => {
   const [users, setUsers] = useState([])
+  const { getSearchUsers } = useContext(ApiContext);
 
   useEffect(() => {
-    fetch('https://picsum.photos/v2/list?page=6&limit=15')
-      .then(res => res.json())
-      .then(data => setUsers(data))
-  }, []);
+    getSearchUsers().then(setUsers);
+  }, [getSearchUsers]);
 
   return (
     <div

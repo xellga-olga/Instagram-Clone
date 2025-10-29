@@ -1,25 +1,21 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useContext } from 'react';
 import './reels.css';
 import { Heart, MessageCircle, Send, Bookmark } from 'lucide-react';
+import ApiContext from '../../ApiContext.js';
 
 const Reels = () => {
   const [videos, setVideos] = useState([]);
   const [avatars, setAvatars] = useState([]);
-  const [counts, setCounts] = useState([]);
+  const { getReels, getAvatars } = useContext(ApiContext);
 
   useEffect(() => {
-    fetch('https://coverr.co/api/videos?page=0&page_size=20')
-      .then(data => data.json())
-      .then(video => setVideos(video.hits || []));
-
-    fetch('https://picsum.photos/v2/list?page=6&limit=20')
-      .then(data => data.json())
-      .then(avatar => setAvatars(avatar.map(img => img.download_url)));
-  }, []);
-
-    fetch('https://picsum.photos/v2/list?page=6&limit=20')
-      .then(data => data.json())
-      .then(count => setCounts(count));
+    (async () => {
+      const videosData = await getReels();
+      const avatarsData = await getAvatars();
+      setVideos(videosData);
+      setAvatars(avatarsData);
+    })();
+  }, [getReels, getAvatars]);
 
   return (
     <div className="reelsContainer">
