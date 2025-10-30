@@ -1,6 +1,7 @@
-import React from 'react';
+import React, {useState} from 'react';
 
 const LikesBlock = ({ like }) => {
+
   return (
     <div className='likesBlock'>
       <span className='likes'>

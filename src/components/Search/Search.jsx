@@ -3,7 +3,7 @@ import './search.css';
 import { Search as SearchIcon } from 'lucide-react';
 import { CircleX } from 'lucide-react';
 import { BadgeCheck } from 'lucide-react';
-import ApiContext from '../../ApiContext';
+import ApiContext from '../../context/ApiContext.js';
 
 
 

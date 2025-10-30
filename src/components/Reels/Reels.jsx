@@ -1,11 +1,13 @@
 import React, { useState, useEffect, useContext } from 'react';
 import './reels.css';
 import { Heart, MessageCircle, Send, Bookmark } from 'lucide-react';
-import ApiContext from '../../ApiContext.js';
+import ApiContext from '../../context/ApiContext.js';
 
 const Reels = () => {
   const [videos, setVideos] = useState([]);
   const [avatars, setAvatars] = useState([]);
+
+
   const { getReels, getAvatars } = useContext(ApiContext);
 
   useEffect(() => {

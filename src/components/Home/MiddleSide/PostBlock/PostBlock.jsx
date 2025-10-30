@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import '../middleSide.css'
 import LikesBlock from "./likes/LikesBlock.jsx";
 import PostAbout from "./postAbout/postAbout.jsx";
@@ -6,41 +6,33 @@ import IconsBlock from "./icons/IconsBlock.jsx";
 import ViewAllComments from "./viewAllComments/ViewAllComments.jsx";
 import PostImage from "./postImage/PostImage.jsx";
 import AddComment from "./addComment/AddComment.jsx";
+import ApiContext from "../../../../context/ApiContext.js";
 
 const PostBlock = () => {
   const [users, setUsers] = useState([]);
 
-  const [posts, setPosts] = useState({});
+  const [posts, setPosts] = useState([]);
 
   const [desc, setDesc] = useState([]);
   const [comments, setComments] = useState([]);
 
   const [likes, setLikes] = useState([]);
 
+  const {getPostBlock} = useContext(ApiContext);
+
 
   useEffect(() => {
-    fetch('https://picsum.photos/v2/list?page=4&limit=20')
-      .then(res => res.json())
-      .then(data => setUsers(data))
+    (async () => {
+      const { users, posts, comments, likes, desc } = await getPostBlock();
+      setPosts(posts);
+      setComments(comments);
+      setLikes(likes);
+      setUsers(users);
+      setDesc(desc);
+    })();
+  }, [getPostBlock]);
 
-    fetch('https://picsum.photos/v2/list?page=1')
-      .then(res => res.json())
-      .then(data => setPosts(data))
 
-    fetch("/api/random?min=1&max=200&count=20")
-      .then(res => res.json())
-      .then(data => setLikes(data))
-
-    fetch("/api/random?min=1&max=200&count=20")
-      .then(res => res.json())
-      .then(data => {
-        setComments(data)
-      })
-
-    fetch('https://baconipsum.com/api/?type=meat-and-filler&paras=20')
-      .then(res => res.json())
-      .then(data => setDesc(data))
-  }, []);
 
   return (
     <div className='postBlock'>
@@ -48,7 +40,6 @@ const PostBlock = () => {
         <div className='postInfo'>
           {users.map((item, index) => {
             const times = (index + 1) * 5;
-            const post = posts[index]
 
 
             return (
@@ -61,11 +52,13 @@ const PostBlock = () => {
                   <div className='timeInfo'>· {times} min</div>
                 </div>
 
-                <PostImage key={post.id} image={post.download_url} />
-                <IconsBlock/>
-                <LikesBlock like={likes[index]}/>
-                <PostAbout author={item.author} description={desc[index] ? desc[index] : ""}/>
-                <ViewAllComments comments={comments[index] ? comments[index] : 0}/>
+                <PostImage key={posts[index]?.id ?? index} image={posts[index]?.download_url} />
+
+                <IconsBlock />
+                <LikesBlock like={likes[index]} />
+
+                <PostAbout author={item.author} description={desc[index] ? desc[index] : ""} />
+                <ViewAllComments comments={comments[index] ? comments[index] : 0} />
                 <AddComment />
               </div>
             );

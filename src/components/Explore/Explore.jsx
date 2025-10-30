@@ -1,7 +1,7 @@
 import React, {useEffect, useState, useContext} from 'react';
 import './explore.css'
 import {useNavigate} from "react-router-dom";
-import ApiContext from '../../ApiContext.js';
+import ApiContext from '../../context/ApiContext.js';
 
 
 const Explore = () => {
