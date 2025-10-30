@@ -1,0 +1,104 @@
+.messagesContainer {
+    width: 100%;
+    display: flex;
+}
+
+.right-side-messages {
+    flex: 0 0 400px;
+    position: sticky;
+    top: 0;
+    height: 100vh;
+    border-right: 1px solid rgb(204, 204, 204);
+    padding: 15px 10px;
+    background: #fff;
+
+}
+
+.header-mes {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 20px;
+}
+
+.nickName-mes {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 600;
+    font-size: 20px;
+}
+
+.iconDownMes {
+    padding: 5px;
+    color: #393939;
+}
+
+.iconMes {
+    cursor: pointer;
+}
+
+
+.searchInputMes {
+    display: flex;
+    padding: 0 40px;
+}
+
+.searchInputMes input {
+    border: none;
+    outline: none;
+    font-size: 16px;
+}
+
+.searchIconMes {
+    color: #858585;
+    padding: 10px;
+}
+
+
+/********** LEFT - SIDE ************/
+.left-side-messages {
+    flex: 0 0 65%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.messages-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    border: 3px solid rgb(0, 0, 0);
+    margin-bottom: 20px ;
+}
+
+.send-mes-btn {
+    background: #006fdd;
+    color: white;
+    padding: 6px 20px;
+    border-radius: 10px;
+    border: none;
+    font-size: 16px;
+    cursor: pointer;
+}
+
+.send-mes-btn:hover {
+    background: #0063b8;
+}
+
+.mes-title {
+    color: #2e2e2e;
+    font-size: 18px;
+    font-weight: 500;
+    margin: 0 auto;
+}
+
+.mes-desc {
+    color: #7c7c7c;
+    font-size: 14px;
+
+}

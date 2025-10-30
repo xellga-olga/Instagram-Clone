@@ -38,7 +38,7 @@ const LeftSide = ({setSearchOpen}) => {
           <Film size={25}/>
           <div className='navHome'>Reels</div>
         </NavLink>
-        <NavLink to='/messages' className='navlink'>
+        <NavLink to='/direct' className='navlink'>
           <MessageCircle size={25}/>
           <div className='navHome'>Messages</div>
         </NavLink>

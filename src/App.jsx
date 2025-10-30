@@ -13,6 +13,7 @@ import Reels from "./components/Reels/Reels.jsx";
 
 import ApiContext from "./context/ApiContext.js";
 import createApi from "./context/api.js";
+import Messages from "./components/Messages/Messages.jsx";
 
 
 function App() {
@@ -39,6 +40,7 @@ function App() {
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/explore/not_personalized' element={<NotPersonalized/>}/>
             <Route path='/reels' element={<Reels/>}/>
+            <Route path='/direct' element={<Messages />}/>
           </Routes>
 
           {searchOpen && (
