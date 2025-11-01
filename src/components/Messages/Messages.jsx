@@ -1,13 +1,31 @@
-import React from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './messages.css'
-import {CircleX, MessageCircleHeart, Search as SearchIcon} from 'lucide-react';
+import {MessageCircleHeart, Search as SearchIcon} from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 import { SquarePen } from 'lucide-react';
+import userMesAvatar from '../../assets/profile_image.jpg';
+import ApiContext from "../../context/ApiContext.js";
 
 
 
 
 const Messages = () => {
+
+  const [usersPhotos, setUsersPhotos] = useState([]);
+  const [usersName, setUsersName] = useState([]);
+
+
+  const api = useContext(ApiContext);
+
+  useEffect(() => {
+    (async () => {
+      const { usersPhotos, usersName } = await api.getMessages();
+      setUsersPhotos(usersPhotos);
+      setUsersName(usersName);
+    })();
+  }, [api]);
+
+
   return (
     <div className="messagesContainer">
       <div className='right-side-messages'>
@@ -27,6 +45,30 @@ const Messages = () => {
           <input type='text' name='search' placeholder='Search'/>
         </div>
 
+        <div className='messages-info'>
+          <div className='messages-info-header'>
+            <p>Messages</p>
+            <button>Requests</button>
+          </div>
+        </div>
+
+        <div className='users-mes'>
+          {usersName.map((user, index) => (
+            <div className='messages-users' key={index}>
+              <img src={usersPhotos[index]?.download_url} alt='user_avatar' className='messages-users-avatar'/>
+              <div className='messages-users-info'>
+                <p className='messages-users-name'>{user.author}</p>
+
+                <div className='mes-info'>
+                  <p>
+                    Hello,Ann!How are you?
+                  </p>
+                  <p>· 5 min</p>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
 
       </div>
 

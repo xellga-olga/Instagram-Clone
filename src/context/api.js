@@ -45,6 +45,19 @@ const createApi = ()=> (
         desc: desc,
       }
     },
+
+    getMessages: async () => {
+      const resUsersPhoto = await fetch('https://picsum.photos/v2/list?page=4&limit=20')
+      const resUsersName = await fetch('https://picsum.photos/v2/list?page=5&limit=20')
+
+      const usersPhotos = await resUsersPhoto.json()
+      const usersName = await resUsersName.json()
+
+      return {
+        usersPhotos: usersPhotos,
+        usersName: usersName,
+      }
+    }
   }
 )
 export default createApi
