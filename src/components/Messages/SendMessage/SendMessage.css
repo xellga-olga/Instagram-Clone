@@ -1,0 +1,122 @@
+.sendMessageOverlay {
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.65);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sendMessageContainer {
+    background: #fff;
+    width: 580px;
+    max-height: 450px;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+}
+
+.sendMessageHeader {
+    position: relative;
+    height: 100px;
+    border-bottom: 1px solid rgba(124, 124, 124, 0.57);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sendMessageHeader h2 {
+    font-size: 16px;
+    margin: 0;
+    font-weight: 700;
+}
+
+.sendMessageClose {
+    position: absolute;
+    right: 16px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.sendMessageInput {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    padding-right: 20px;
+    padding-left: 20px;
+}
+
+.sendMessageInput h2 {
+    font-size: 16px;
+}
+
+.sendMessageInput input {
+    border: none;
+    outline: none;
+    padding: 20px;
+    font-size: 16px;
+    width: 100%;
+}
+
+
+.sendMessageBody {
+    padding: 20px;
+    overflow-y: auto;
+}
+
+
+.sendMessageBodyInfo {
+    display: flex;
+    gap: 10px;
+    padding: 5px 0;
+}
+
+.sendMessageBodyInfo img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    border: 1px solid rgba(126, 126, 126, 0.62);
+}
+
+.sendMessageBodyNames {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 10px;
+}
+
+.sendMessage-name {
+    margin: 0;
+    font-size: 14px;
+}
+
+.sendMessage-nickname {
+    margin: 0;
+    font-size: 13px;
+    color: #5a5a5a;
+}
+
+.chat {
+    background: #0095f6;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 90%;
+    margin: 18px auto 18px;
+    display: block;
+}
+
+.chat:hover {
+    background: #0063b8;
+}
+

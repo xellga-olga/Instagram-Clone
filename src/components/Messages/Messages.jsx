@@ -3,8 +3,8 @@ import './messages.css'
 import {MessageCircleHeart, Search as SearchIcon} from 'lucide-react';
 import { ChevronDown } from 'lucide-react';
 import { SquarePen } from 'lucide-react';
-import userMesAvatar from '../../assets/profile_image.jpg';
 import ApiContext from "../../context/ApiContext.js";
+import SendMessage from "./SendMessage/SendMessage.jsx";
 
 
 
@@ -13,6 +13,8 @@ const Messages = () => {
 
   const [usersPhotos, setUsersPhotos] = useState([]);
   const [usersName, setUsersName] = useState([]);
+
+  const [sendMessage, setSendMessage] = useState(false);
 
 
   const api = useContext(ApiContext);
@@ -27,6 +29,7 @@ const Messages = () => {
 
 
   return (
+    <>
     <div className="messagesContainer">
       <div className='right-side-messages'>
 
@@ -80,9 +83,21 @@ const Messages = () => {
         </div>
         <p className='mes-title'>Your Messages</p>
         <p className='mes-desc'>Send personal photos and messages to a friend or group</p>
-        <button className='send-mes-btn'>Send message</button>
+        <button
+          className='send-mes-btn'
+          onClick={(e) => {e.preventDefault();
+            setSendMessage(true);
+          }}>
+          Send message
+        </button>
       </div>
+
     </div>
+
+      {sendMessage && (
+        <SendMessage onClose={() => setSendMessage(false)} />
+      )}
+    </>
   );
 };
 

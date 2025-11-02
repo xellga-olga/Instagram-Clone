@@ -1,4 +1,4 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './leftSide.css'
 import inst_logo from '../../../assets/inst_logo.png'
 import {AtSign, Compass, Film, Heart, House, Menu, MessageCircle, Search, SquarePlus} from 'lucide-react';

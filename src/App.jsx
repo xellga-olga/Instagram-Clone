@@ -19,6 +19,7 @@ import Messages from "./components/Messages/Messages.jsx";
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
 
+
   const api = createApi();
 
 
@@ -44,7 +45,7 @@ function App() {
           </Routes>
 
           {searchOpen && (
-            <Search onClose={() => setSearchOpen(false)}/>
+            <Search onClose={() => setSearchOpen(false)} />
           )}
 
         </div>
