@@ -18,7 +18,8 @@
 
 .sendMessageHeader {
     position: relative;
-    height: 50px;
+    padding-bottom: 20px;
+    padding-top: 20px;
     border-bottom: 1px solid rgba(124, 124, 124, 0.57);
     display: flex;
     align-items: center;
@@ -89,7 +90,7 @@
     display: flex;
     flex-direction: column;
     justify-content: center;
-    gap: 10px;
+    gap: 5px;
 }
 
 .sendMessage-name {
@@ -121,7 +122,13 @@
     background: #0063b8;
 }
 
-/* обёртка справа */
+.recommendMessage h2 {
+    font-size: 14px;
+    font-weight: bold;
+    margin: 0;
+    padding: 0 20px;
+}
+
 .selectWrapper {
     margin-left: auto;
     display: flex;
@@ -129,7 +136,7 @@
     justify-content: center;
 }
 
-/* сам инпут прячем */
+
 .selectCircle {
     appearance: none;
     -webkit-appearance: none;
