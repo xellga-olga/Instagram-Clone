@@ -28,34 +28,10 @@ const SendMessage = ({ onClose }) => {
               <p className='sendMessage-name'>Name Nick</p>
               <p className='sendMessage-nickname'>ghjkp</p>
             </div>
-          </div>
-          <div className='sendMessageBodyInfo'>
-            <img src={image} alt=''/>
-            <div className='sendMessageBodyNames'>
-              <p className='sendMessage-name'>Name Nick</p>
-              <p className='sendMessage-nickname'>ghjkp</p>
-            </div>
-          </div>
-          <div className='sendMessageBodyInfo'>
-            <img src={image} alt=''/>
-            <div className='sendMessageBodyNames'>
-              <p className='sendMessage-name'>Name Nick</p>
-              <p className='sendMessage-nickname'>ghjkp</p>
-            </div>
-          </div>
-          <div className='sendMessageBodyInfo'>
-            <img src={image} alt=''/>
-            <div className='sendMessageBodyNames'>
-              <p className='sendMessage-name'>Name Nick</p>
-              <p className='sendMessage-nickname'>ghjkp</p>
-            </div>
-          </div>
-          <div className='sendMessageBodyInfo'>
-            <img src={image} alt=''/>
-            <div className='sendMessageBodyNames'>
-              <p className='sendMessage-name'>Name Nick</p>
-              <p className='sendMessage-nickname'>ghjkp</p>
-            </div>
+            <label className="selectWrapper">
+              <input type="checkbox" className="selectCircle"/>
+              <span className="selectVisual"></span>
+            </label>
           </div>
         </div>
 

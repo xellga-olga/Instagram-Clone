@@ -18,7 +18,7 @@
 
 .sendMessageHeader {
     position: relative;
-    height: 100px;
+    height: 50px;
     border-bottom: 1px solid rgba(124, 124, 124, 0.57);
     display: flex;
     align-items: center;
@@ -75,6 +75,7 @@
     display: flex;
     gap: 10px;
     padding: 5px 0;
+    align-items: center;
 }
 
 .sendMessageBodyInfo img {
@@ -120,3 +121,46 @@
     background: #0063b8;
 }
 
+/* обёртка справа */
+.selectWrapper {
+    margin-left: auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* сам инпут прячем */
+.selectCircle {
+    appearance: none;
+    -webkit-appearance: none;
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+}
+
+.selectVisual {
+    width: 24px;
+    height: 24px;
+    border: 2px solid #ccc;
+    border-radius: 50%;
+    display: inline-block;
+    position: relative;
+    cursor: pointer;
+    transition: 0.2s ease;
+}
+
+.selectCircle:checked + .selectVisual {
+    background: #272727;
+    border-color: #272727;
+}
+
+.selectCircle:checked + .selectVisual::after {
+    content: "✔";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -56%);
+    color: #fff;
+    font-size: 15px;
+    line-height: 1;
+}
