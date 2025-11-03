@@ -39,7 +39,9 @@ const Messages = () => {
             <ChevronDown size={16} className='iconDownMes'/>
           </div>
           <div className='iconMes'>
-            <SquarePen size={26} />
+            <SquarePen size={26}   onClick={(e) => {e.preventDefault();
+              setSendMessage(true);
+            }}/>
           </div>
         </div>
 

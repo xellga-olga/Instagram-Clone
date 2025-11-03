@@ -122,6 +122,12 @@
     background: #0063b8;
 }
 
+.chat:disabled {
+    background: #6eb9ff;
+    cursor: not-allowed;
+    opacity: 0.6;
+}
+
 .recommendMessage h2 {
     font-size: 14px;
     font-weight: bold;

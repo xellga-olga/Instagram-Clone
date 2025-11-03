@@ -2,12 +2,13 @@ import React, {useContext, useEffect, useState} from 'react';
 import './SendMessage.css';
 import { X } from 'lucide-react';
 
-import image from '../../../assets/profile_image.jpg'
 import ApiContext from "../../../context/ApiContext.js";
 
 const SendMessage = ({ onClose }) => {
   const [usersPhotos, setUsersPhotos] = useState([]);
   const [usersName, setUsersName] = useState([]);
+
+  const [selectedUsers, setSelectedUsers] = useState([]);
 
   const api = useContext(ApiContext);
 
@@ -48,14 +49,26 @@ const SendMessage = ({ onClose }) => {
                 <p className='sendMessage-nickname'>{user.author}</p>
               </div>
               <label className="selectWrapper">
-                <input type="checkbox" className="selectCircle"/>
+                <input
+                  type="checkbox"
+                  className="selectCircle"
+                  onChange={(e) => {
+                    if (e.target.checked) {
+                      setSelectedUsers((prev) => [...prev, index]);
+                    } else {
+                      setSelectedUsers((prev) => prev.filter((i) => i !== index));
+                    }
+                  }}
+                />
                 <span className="selectVisual"></span>
               </label>
             </div>
           ))}
         </div>
 
-        <button className='chat'>Chat</button>
+        <button className='chat' disabled={selectedUsers.length === 0}>
+          Chat
+        </button>
       </div>
     </div>
   );
