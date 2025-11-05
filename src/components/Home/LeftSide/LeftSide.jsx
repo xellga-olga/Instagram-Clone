@@ -5,7 +5,7 @@ import {AtSign, Compass, Film, Heart, House, Menu, MessageCircle, Search, Square
 import profile_image from '../../../assets/profile_image.jpg'
 import {NavLink} from "react-router-dom";
 
-const LeftSide = ({setSearchOpen}) => {
+const LeftSide = ({setSearchOpen, setCreateOpen}) => {
 
   return (
     <div className='left-side'>
@@ -46,7 +46,12 @@ const LeftSide = ({setSearchOpen}) => {
           <Heart size={25}/>
           <div className='navHome'>Notifications</div>
         </NavLink>
-        <NavLink to='/create' className='navlink'>
+        <NavLink to='#' className='navlink'
+                 onClick={(e) =>
+                 {e.preventDefault();
+                   setCreateOpen(true);
+                 }}
+        >
           <SquarePlus size={25}/>
           <div className='navHome'>Create</div>
         </NavLink>

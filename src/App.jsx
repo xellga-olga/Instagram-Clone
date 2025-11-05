@@ -14,10 +14,13 @@ import Reels from "./components/Reels/Reels.jsx";
 import ApiContext from "./context/ApiContext.js";
 import createApi from "./context/api.js";
 import Messages from "./components/Messages/Messages.jsx";
+import Create from "./components/Create/Create.jsx";
 
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
+
+  const [createOpen, setCreateOpen] = useState(false);
 
 
   const api = createApi();
@@ -28,7 +31,10 @@ function App() {
     <ApiContext.Provider value={api}>
       <div className="App">
         <div className='left-side-home'>
-          <LeftSide setSearchOpen={setSearchOpen}/>
+          <LeftSide
+            setSearchOpen={setSearchOpen}
+            setCreateOpen={setCreateOpen}
+          />
         </div>
 
         <div className='middle-side-home'>
@@ -46,6 +52,10 @@ function App() {
 
           {searchOpen && (
             <Search onClose={() => setSearchOpen(false)} />
+          )}
+
+          {createOpen && (
+            <Create onClose={() => setCreateOpen(false)} />
           )}
 
         </div>
