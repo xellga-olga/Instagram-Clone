@@ -1,6 +1,7 @@
 import React, {useRef} from 'react';
 import './Create.css'
 import { ImagePlus } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 
 const Create = ({ onClose }) => {
@@ -17,6 +18,8 @@ const Create = ({ onClose }) => {
     }
   }
 
+  const { t } = useTranslation();
+
   return (
     <div className="createOverlay" onClick={onClose}>
       <div
@@ -24,20 +27,19 @@ const Create = ({ onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className='createHeader'>
-          <h2 className="createTitle">Create publication</h2>
-        </div>
+          <h2 className="createTitle">{t('createModal.title')}</h2>        </div>
         <div className='createBody'>
-          <ImagePlus className="createImage" />
-          <p>Drag photos and videos here</p>
+          <ImagePlus className="createImage"/>
+          <p>{t('createModal.dragText')}</p>
           <input
             type='file'
-            style={{ display: 'none' }}
+            style={{display: 'none'}}
             accept="image/*,video/*"
             ref={fileInput}
             onChange={handleFileChange}
           />
           <button className="createButton" onClick={handleClick}>
-            Select on computer
+            {t('createModal.button')}
           </button>
         </div>
       </div>

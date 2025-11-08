@@ -15,12 +15,15 @@ import ApiContext from "./context/ApiContext.js";
 import createApi from "./context/api.js";
 import Messages from "./components/Messages/Messages.jsx";
 import Create from "./components/Create/Create.jsx";
+import Notifications from "./components/Notifications/Notifications.jsx";
 
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
 
   const [createOpen, setCreateOpen] = useState(false);
+
+  const [notificationsOpen, setNotificationsOpen] = useState(false);
 
 
   const api = createApi();
@@ -34,6 +37,7 @@ function App() {
           <LeftSide
             setSearchOpen={setSearchOpen}
             setCreateOpen={setCreateOpen}
+            setNotificationsOpen={setNotificationsOpen}
           />
         </div>
 
@@ -57,6 +61,12 @@ function App() {
           {createOpen && (
             <Create onClose={() => setCreateOpen(false)} />
           )}
+
+          {notificationsOpen && (
+            <Notifications onClose={() => setNotificationsOpen(false)} />
+          )}
+
+
 
         </div>
       </div>

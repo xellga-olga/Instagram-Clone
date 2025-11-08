@@ -1,0 +1,37 @@
+{
+  "home": "Home",
+  "search": "Search",
+  "explore": "Explore",
+  "reels": "Reels",
+  "messages": "Messages",
+  "notifications": "Notifications",
+  "create": "Create",
+  "profile": "Profile",
+  "threads": "Threads",
+  "more": "More",
+
+  "login": {
+    "title": "Log in",
+    "username": "Username",
+    "usernamePlaceholder": "Enter your username",
+    "password": "Password",
+    "passwordPlaceholder": "Enter your password",
+    "button": "Log in",
+    "noAccount": "Don’t have an account?",
+    "signupLink": "Sign up"
+  },
+
+  "createModal": {
+    "title": "Create publication",
+    "dragText": "Drag photos and videos here",
+    "button": "Select on computer"
+  },
+
+  "searchModal": {
+    "title": "Search request",
+    "placeholder": "Search",
+    "recently": "Recently",
+    "noRecent": "No recent requests.",
+    "followers": "Followers: {{count}}"
+  }
+}

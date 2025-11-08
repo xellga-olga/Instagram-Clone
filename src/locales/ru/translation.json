@@ -1,0 +1,47 @@
+{
+  "home": "Главная",
+  "search": "Поиск",
+  "explore": "Обзор",
+  "reels": "Reels",
+  "messages": "Сообщения",
+  "notifications": "Уведомления",
+  "create": "Создать",
+  "profile": "Профиль",
+  "threads": "Threads",
+  "more": "Ещё",
+
+  "login": {
+    "title": "Вход",
+    "username": "Имя пользователя",
+    "usernamePlaceholder": "Введите имя пользователя",
+    "password": "Пароль",
+    "passwordPlaceholder": "Введите пароль",
+    "button": "Войти",
+    "noAccount": "Нет аккаунта?",
+    "signupLink": "Зарегистрироваться"
+  },
+
+  "signup": {
+    "title": "Регистрация",
+    "email": "Электронная почта",
+    "username": "Имя пользователя",
+    "password": "Пароль",
+    "button": "Создать аккаунт",
+    "haveAccount": "Уже есть аккаунт?",
+    "loginLink": "Войти"
+  },
+
+  "createModal": {
+    "title": "Создать публикацию",
+    "dragText": "Перетащите фото и видео сюда",
+    "button": "Выбрать на компьютере"
+  },
+
+  "searchModal": {
+    "title": "Поисковой запрос",
+    "placeholder": "Поиск",
+    "recently": "Недавние",
+    "noRecent": "Нет недавних запросов.",
+    "followers": "Подписчики: {{count}}"
+  }
+}

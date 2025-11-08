@@ -2,9 +2,18 @@ import React, {useEffect, useState} from 'react';
 import './rightSide.css'
 import profile_image from "../../../assets/profile_image.jpg";
 import {Link} from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
+
 
 const RightSide = () => {
   const [users, setUsers] = useState([])
+
+  const {i18n } = useTranslation();
+
+  const changeLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
+
 
   useEffect(() => {
     fetch('https://picsum.photos/v2/list?page=6&limit=5')
@@ -56,6 +65,10 @@ const RightSide = () => {
 
         <div className='copyright'>
           <p>© 2025 Instagram Clone from Olya Pla</p>
+          <div className="lang-switcher">
+            <button onClick={() => changeLanguage('ru')}>RU</button>
+            <button onClick={() => changeLanguage('en')}>EN</button>
+          </div>
         </div>
 
 

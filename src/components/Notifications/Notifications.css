@@ -1,0 +1,17 @@
+.notifications-overlay {
+    position: fixed;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(0,0,0,0.4);
+    z-index: 1000;
+}
+
+.notifications-content {
+    background: #fff;
+    padding: 16px 24px;
+    border-radius: 12px;
+    min-width: 300px;
+    max-width: 90vw;
+}

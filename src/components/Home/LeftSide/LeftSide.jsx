@@ -4,8 +4,11 @@ import inst_logo from '../../../assets/inst_logo.png'
 import {AtSign, Compass, Film, Heart, House, Menu, MessageCircle, Search, SquarePlus} from 'lucide-react';
 import profile_image from '../../../assets/profile_image.jpg'
 import {NavLink} from "react-router-dom";
+import { useTranslation } from 'react-i18next';
 
-const LeftSide = ({setSearchOpen, setCreateOpen}) => {
+
+const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
+  const { t, i18n } = useTranslation();
 
   return (
     <div className='left-side'>
@@ -16,7 +19,7 @@ const LeftSide = ({setSearchOpen, setCreateOpen}) => {
       <div className='navlinkPart'>
         <NavLink to='/' className='navlink'>
           <House size={25}/>
-          <div className='navHome'>Home</div>
+          <div className='navHome'>{t('home')}</div>
         </NavLink>
 
         <NavLink to='#'
@@ -27,25 +30,30 @@ const LeftSide = ({setSearchOpen, setCreateOpen}) => {
                  }}
         >
           <Search size={25}/>
-          <div className='navHome'>Search</div>
+          <div className='navHome'>{t('search')}</div>
         </NavLink>
 
         <NavLink to='/explore' className='navlink'>
           <Compass size={25}/>
-          <div className='navHome'>Explore</div>
+          <div className='navHome'>{t('explore')}</div>
         </NavLink>
         <NavLink to='/reels' className='navlink'>
           <Film size={25}/>
-          <div className='navHome'>Reels</div>
+          <div className='navHome'>{t('reels')}</div>
         </NavLink>
         <NavLink to='/direct' className='navlink'>
           <MessageCircle size={25}/>
-          <div className='navHome'>Messages</div>
+          <div className='navHome'>{t('messages')}</div>
         </NavLink>
-        <NavLink to='/notifications' className='navlink'>
+
+        <NavLink to='#' className='navlink' onClick={(e) => {
+          e.preventDefault();
+          setNotificationsOpen(true);
+        }}>
           <Heart size={25}/>
-          <div className='navHome'>Notifications</div>
+          <div className='navHome'>{t('notifications')}</div>
         </NavLink>
+
         <NavLink to='#' className='navlink'
                  onClick={(e) =>
                  {e.preventDefault();
@@ -53,20 +61,20 @@ const LeftSide = ({setSearchOpen, setCreateOpen}) => {
                  }}
         >
           <SquarePlus size={25}/>
-          <div className='navHome'>Create</div>
+          <div className='navHome'>{t('create')}</div>
         </NavLink>
         <NavLink to='/profile/olya__pla' className='navlink'>
           <img src={profile_image} alt='profile image' className='profile_image' />
-          <div className='navHome'>Profile</div>
+          <div className='navHome'>{t('profile')}</div>
         </NavLink>
 
         <NavLink to='threads' className='navlink'>
           <AtSign size={25}/>
-          <div className='navHome'>Threads</div>
+          <div className='navHome'>{t('threads')}</div>
         </NavLink>
         <NavLink to='/more' className='navlink'>
           <Menu size={25}/>
-          <div className='navHome'>More</div>
+          <div className='navHome'>{t('more')}</div>
         </NavLink>
       </div>
     </div>
