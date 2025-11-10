@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './SendMessage.css';
 import { X } from 'lucide-react';
+import { useTranslation } from 'react-i18next';
 
 import ApiContext from "../../../context/ApiContext.js";
 
@@ -11,6 +12,9 @@ const SendMessage = ({ onClose }) => {
   const [selectedUsers, setSelectedUsers] = useState([]);
 
   const api = useContext(ApiContext);
+
+  const { t } = useTranslation();
+
 
   useEffect(() => {
     (async () => {
@@ -27,17 +31,17 @@ const SendMessage = ({ onClose }) => {
         onClick={(e) => e.stopPropagation()}
       >
         <div className='sendMessageHeader'>
-          <h2>New message</h2>
+          <h2>{t('sendMessage.title')}</h2>
           <button className="sendMessageClose" onClick={onClose}><X size={25}/></button>
         </div>
 
         <div className='sendMessageInput'>
-          <h2>Whom:</h2>
-          <input type='text' placeholder='Search...'/>
+          <h2>{t('sendMessage.to')}</h2>
+          <input type='text' placeholder={t('sendMessage.placeholder')}/>
         </div>
 
         <div className='recommendMessage'>
-          <h2>Recommend</h2>
+          <h2>{t('sendMessage.recommend')}</h2>
         </div>
 
         <div className='sendMessageBody'>
@@ -67,7 +71,7 @@ const SendMessage = ({ onClose }) => {
         </div>
 
         <button className='chat' disabled={selectedUsers.length === 0}>
-          Chat
+          {t('sendMessage.button')}
         </button>
       </div>
     </div>

@@ -43,5 +43,55 @@
     "recently": "Недавние",
     "noRecent": "Нет недавних запросов.",
     "followers": "Подписчики: {{count}}"
+  },
+
+  "sendMessage": {
+    "title": "Новое сообщение",
+    "to": "Кому:",
+    "placeholder": "Поиск...",
+    "recommend": "Рекомендации",
+    "button": "Чат"
+  },
+
+  "direct": {
+    "placeholder": "Поиск",
+    "title": "Сообщения",
+    "requests": "Запросы",
+    "yourMessages": "Ваши сообщения",
+    "desc": "Отправляйте личные фото и сообщения друзьям или группам",
+    "button": "Отправить сообщение"
+  },
+
+  "userBio": {
+    "editProfile": "Редактировать профиль",
+    "viewArchive": "Посмотреть архив",
+    "publications": "публикации",
+    "subscribers": "подписчики",
+    "subscriptions": "подписки"
+  },
+
+  "rightSide": {
+    "switch": "Переключить",
+    "recommendations": "Рекомендации для вас",
+    "seeAll": "Смотреть все",
+    "follow": "Подписаться",
+    "copyright": "© 2025 Клон Instagram от Olya Pla"
+  },
+
+  "likesBlock": {
+    "likes": "лайков"
+  },
+
+  "addComment": {
+    "placeholder": "Добавьте комментарий..."
+  },
+
+  "viewAllComments": {
+    "text": "Посмотреть все комментарии ({{count}})"
+  },
+
+  "discover": {
+    "forYou": "Для вас",
+    "notPersonalized": "Неперсонализированное"
   }
 }

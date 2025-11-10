@@ -2,9 +2,10 @@ import React, {useEffect, useState, useContext} from 'react';
 import './explore.css'
 import {useNavigate} from "react-router-dom";
 import ApiContext from '../../context/ApiContext.js';
-
+import { useTranslation } from 'react-i18next';
 
 const Explore = () => {
+  const { t } = useTranslation();
   const [explore, setExplore] = useState([])
 
   const { getExplorePersonalized } = useContext(ApiContext);
@@ -22,8 +23,8 @@ const Explore = () => {
   return (
     <div className='exploreContainer'>
       <div className='explore' >
-        <p  tabIndex="0">For you</p>
-        <p  tabIndex="0" onClick={handleClickNotPersonalized}>Not personalized</p>
+        <p  tabIndex="0">{t('discover.forYou')}</p>
+        <p  tabIndex="0" onClick={handleClickNotPersonalized}>{t('discover.notPersonalized')}</p>
       </div>
       <div className='exploreContent'>
         {explore.map((item, index) => (

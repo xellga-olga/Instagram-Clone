@@ -6,9 +6,9 @@ import { useTranslation } from 'react-i18next';
 
 
 const RightSide = () => {
+  const { t, i18n } = useTranslation();
   const [users, setUsers] = useState([])
 
-  const {i18n } = useTranslation();
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
@@ -35,14 +35,14 @@ const RightSide = () => {
 
         </div>
         <button className='switch-btn'>
-          Switch
+          {t('rightSide.switch')}
         </button>
       </div>
       <div className='users-recommendation'>
         <p>
-          Recommendations for you
+          {t('rightSide.recommendations')}
         </p>
-        <button className='recommendation-btn'>See All</button>
+        <button className='recommendation-btn'>{t('rightSide.seeAll')}</button>
       </div>
 
       <div className='recommendation-users-profile'>
@@ -55,16 +55,16 @@ const RightSide = () => {
                 </div>
                 <div className='users-text'>
                   <div key={i.id} className='usersName'>{user.author}</div>
-                  <p>Recommendations for you</p>
+                  <p>{t('rightSide.recommendations')}</p>
                 </div>
               </div>
-              <button className='follow-btn'>Follow</button>
+              <button className='follow-btn'>{t('rightSide.follow')}</button>
             </div>
           ))}
         </div>
 
         <div className='copyright'>
-          <p>© 2025 Instagram Clone from Olya Pla</p>
+          <p>{t('rightSide.copyright')}</p>
           <div className="lang-switcher">
             <button onClick={() => changeLanguage('ru')}>RU</button>
             <button onClick={() => changeLanguage('en')}>EN</button>

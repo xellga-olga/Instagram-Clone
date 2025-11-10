@@ -33,5 +33,55 @@
     "recently": "Recently",
     "noRecent": "No recent requests.",
     "followers": "Followers: {{count}}"
+  },
+
+  "sendMessage": {
+    "title": "New message",
+    "to": "Whom:",
+    "placeholder": "Search...",
+    "recommend": "Recommend",
+    "button": "Chat"
+  },
+
+  "direct": {
+    "placeholder": "Search",
+    "title": "Messages",
+    "requests": "Requests",
+    "yourMessages": "Your Messages",
+    "desc": "Send personal photos and messages to a friend or group",
+    "button": "Send message"
+  },
+
+  "userBio": {
+    "editProfile": "Edit profile",
+    "viewArchive": "View the archive",
+    "publications": "publications",
+    "subscribers": "subscribers",
+    "subscriptions": "subscriptions"
+  },
+
+  "rightSide": {
+    "switch": "Switch",
+    "recommendations": "Recommendations for you",
+    "seeAll": "See All",
+    "follow": "Follow",
+    "copyright": "© 2025 Instagram Clone from Olya Pla"
+  },
+
+  "likesBlock": {
+    "likes": "Likes"
+  },
+
+  "addComment": {
+    "placeholder": "Add a comment..."
+  },
+
+  "viewAllComments": {
+    "text": "View all comments ({{count}})"
+  },
+
+  "discover": {
+    "forYou": "For you",
+    "notPersonalized": "Not personalized"
   }
 }

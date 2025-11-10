@@ -6,6 +6,8 @@ import { SquarePen } from 'lucide-react';
 import ApiContext from "../../context/ApiContext.js";
 import SendMessage from "./SendMessage/SendMessage.jsx";
 
+import { useTranslation } from 'react-i18next';
+
 
 
 
@@ -16,6 +18,7 @@ const Messages = () => {
 
   const [sendMessage, setSendMessage] = useState(false);
 
+  const { t } = useTranslation();
 
   const api = useContext(ApiContext);
 
@@ -47,13 +50,13 @@ const Messages = () => {
 
         <div className='searchInputMes'>
           <SearchIcon size={16} className='searchIconMes'/>
-          <input type='text' name='search' placeholder='Search'/>
+          <input type='text' name='search'  placeholder={t('direct.placeholder')}/>
         </div>
 
         <div className='messages-info'>
           <div className='messages-info-header'>
-            <p>Messages</p>
-            <button>Requests</button>
+            <p>{t('direct.title')}</p>
+            <button>{t('direct.requests')}</button>
           </div>
         </div>
 
@@ -83,21 +86,22 @@ const Messages = () => {
         <div className='messages-icon'>
           <MessageCircleHeart size={60}/>
         </div>
-        <p className='mes-title'>Your Messages</p>
-        <p className='mes-desc'>Send personal photos and messages to a friend or group</p>
+        <p className='mes-title'>{t('direct.yourMessages')}</p>
+        <p className='mes-desc'>{t('direct.desc')}</p>
         <button
           className='send-mes-btn'
-          onClick={(e) => {e.preventDefault();
+          onClick={(e) => {
+            e.preventDefault();
             setSendMessage(true);
           }}>
-          Send message
+          {t('direct.button')}
         </button>
       </div>
 
     </div>
 
       {sendMessage && (
-        <SendMessage onClose={() => setSendMessage(false)} />
+        <SendMessage onClose={() => setSendMessage(false)}/>
       )}
     </>
   );

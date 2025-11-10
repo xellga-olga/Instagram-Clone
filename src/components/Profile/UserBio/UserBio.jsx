@@ -3,7 +3,11 @@ import './userbio.css'
 import profile_image from "../../../assets/profile_image.jpg";
 import { Settings } from 'lucide-react';
 
+import { useTranslation } from 'react-i18next';
+
 const UserBio = () => {
+  const { t } = useTranslation();
+
   const [randomNumbers, setRandomNumbers] = useState(0);
 
   useEffect(() => {
@@ -23,8 +27,8 @@ const UserBio = () => {
           <span className="userBioNickname">olya__pla</span>
 
           <div className="btnProfileUserBio">
-            <button>Edit profile</button>
-            <button>View the archive</button>
+            <button>{t('userBio.editProfile')}</button>
+            <button>{t('userBio.viewArchive')}</button>
           </div>
 
           <div className="btnSettingsUserBio">
@@ -34,9 +38,9 @@ const UserBio = () => {
 
         <div className='bottomLine'>
           <ul>
-            <li><strong>{randomNumbers > 0 ? randomNumbers : 0}</strong> publications</li>
-            <li><strong>{randomNumbers > 0 ? randomNumbers : 0}</strong> subscribers</li>
-            <li><strong>{randomNumbers > 0 ? randomNumbers : 0}</strong> subscriptions</li>
+            <li><strong>{randomNumbers > 0 ? randomNumbers : 0}</strong> {t('userBio.publications')}</li>
+            <li><strong>{randomNumbers > 0 ? randomNumbers : 0}</strong> {t('userBio.subscribers')}</li>
+            <li><strong>{randomNumbers > 0 ? randomNumbers : 0}</strong> {t('userBio.subscriptions')}</li>
           </ul>
         </div>
       </div>
