@@ -8,12 +8,15 @@ import { useTranslation } from 'react-i18next';
 const RightSide = () => {
   const { t, i18n } = useTranslation();
   const [users, setUsers] = useState([])
-
+  const [isLangOpen, setIsLangOpen] = useState(false);
 
   const changeLanguage = (lng) => {
     i18n.changeLanguage(lng);
   };
 
+  const toggleLangDropdown = () => {
+    setIsLangOpen((prev) => !prev);
+  };
 
   useEffect(() => {
     fetch('https://picsum.photos/v2/list?page=6&limit=5')
@@ -64,11 +67,36 @@ const RightSide = () => {
         </div>
 
         <div className='copyright'>
-          <p>{t('rightSide.copyright')}</p>
-          <div className="lang-switcher">
-            <button onClick={() => changeLanguage('ru')}>RU</button>
-            <button onClick={() => changeLanguage('en')}>EN</button>
+          <div className="footer-links">
+            <button type="button" className="footer-link">
+              {t('rightSide.info')}
+            </button>
+            <span className="footer-separator">·</span>
+            <button type="button" className="footer-link">
+              {t('rightSide.help')}
+            </button>
+            <span className="footer-separator">·</span>
+            <button type="button" className="footer-link">
+              {t('rightSide.privacy')}
+            </button>
+            <span className="footer-separator">·</span>
+            <button type="button" className="footer-link">
+              {t('rightSide.terms')}
+            </button>
           </div>
+
+          <div className="lang-switcher">
+            <select
+              className="lang-select"
+              value={i18n.language}
+              onChange={(e) => changeLanguage(e.target.value)}
+            >
+              <option value="ru">Русский</option>
+              <option value="en">English</option>
+            </select>
+          </div>
+
+          <p>{t('rightSide.copyright')}</p>
         </div>
 
 

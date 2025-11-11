@@ -65,7 +65,11 @@
     "recommendations": "Recommendations for you",
     "seeAll": "See All",
     "follow": "Follow",
-    "copyright": "© 2025 Instagram Clone from Olya Pla"
+    "copyright": "© 2025 Instagram Clone from Olya Pla",
+    "info": "Information",
+    "help": "Help",
+    "privacy": "Privacy",
+    "terms": "Terms"
   },
 
   "likesBlock": {

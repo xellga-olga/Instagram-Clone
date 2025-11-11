@@ -154,6 +154,36 @@
     color: #09009c;
 }
 
+
+/*footer*/
+
+.footer-links {
+    margin-top: 4px;
+    display: flex;
+    align-items: center;
+    gap: 4px;
+    font-size: 14px;
+    color: #737373;
+    flex-wrap: wrap;
+}
+
+.footer-link {
+    border: none;
+    background: transparent;
+    padding: 0;
+    font: inherit;
+    color: inherit;
+    cursor: pointer;
+}
+
+.footer-link:hover {
+    text-decoration: underline;
+}
+
+.footer-separator {
+    opacity: 0.7;
+}
+
 .copyright {
     text-transform: uppercase;
     font-size: 12px;
@@ -162,4 +192,46 @@
 
 .copyright p {
     color: rgb(204, 204, 204);
+}
+
+.lang-switcher {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+    font-size: 14px;
+    color: #737373;
+}
+
+.lang-select {
+    background: transparent;
+    border: none;
+    color: #737373;
+    font: inherit;
+    cursor: pointer;
+    appearance: none;
+    outline: none;
+    padding: 4px 20px 4px 0;
+    position: relative;
+}
+
+.lang-select::-ms-expand {
+    display: none;
+}
+
+.lang-select::after {
+    content: "▾";
+    position: absolute;
+    right: 0;
+    color: #737373;
+    pointer-events: none;
+}
+
+.lang-select:hover {
+    text-decoration: underline;
+}
+
+.lang-select option {
+    background-color: #000;
+    color: #fff;
+    font-size: 11px;
 }

@@ -75,7 +75,11 @@
     "recommendations": "Рекомендации для вас",
     "seeAll": "Смотреть все",
     "follow": "Подписаться",
-    "copyright": "© 2025 Клон Instagram от Olya Pla"
+    "copyright": "© 2025 Клон Instagram от Olya Pla",
+    "info": "Информация",
+    "help": "Помощь",
+    "privacy": "Конфиденциальность",
+    "terms": "Условия"
   },
 
   "likesBlock": {
