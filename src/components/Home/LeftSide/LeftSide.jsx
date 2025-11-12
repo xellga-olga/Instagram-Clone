@@ -37,10 +37,12 @@ const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
           <Compass size={25}/>
           <div className='navHome'>{t('explore')}</div>
         </NavLink>
+
         <NavLink to='/reels' className='navlink'>
           <Film size={25}/>
           <div className='navHome'>{t('reels')}</div>
         </NavLink>
+
         <NavLink to='/direct' className='navlink'>
           <MessageCircle size={25}/>
           <div className='navHome'>{t('messages')}</div>
@@ -63,15 +65,20 @@ const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
           <SquarePlus size={25}/>
           <div className='navHome'>{t('create')}</div>
         </NavLink>
+
         <NavLink to='/profile/olya__pla' className='navlink'>
           <img src={profile_image} alt='profile image' className='profile_image' />
           <div className='navHome'>{t('profile')}</div>
         </NavLink>
 
-        <NavLink to='threads' className='navlink'>
+        <a href='https://www.threads.com/'
+           target='_blank'
+           className='navlink'
+        >
           <AtSign size={25}/>
           <div className='navHome'>{t('threads')}</div>
-        </NavLink>
+        </a>
+
         <NavLink to='/more' className='navlink'>
           <Menu size={25}/>
           <div className='navHome'>{t('more')}</div>

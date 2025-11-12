@@ -1,3 +1,5 @@
+import Notifications from "../components/Notifications/Notifications.jsx";
+
 const createApi = ()=> (
   {
     getReels: async () => {
@@ -57,6 +59,27 @@ const createApi = ()=> (
         usersPhotos: usersPhotos,
         usersName: usersName,
       }
+    },
+
+    getNotifications: async () => {
+      // const resUsersNickName = await fetch('https://randomuser.me/api/?results=15')
+      // const resUsersAvatar = await fetch('https://randomuser.me/api/?results=15')
+      //
+      // const usersNickName = await resUsersNickName.json()
+      // const usersAvatar = await resUsersAvatar.json()
+      //
+      // return {
+      // usersNickName: usersNickName,
+      // usersAvatar: usersAvatar,
+      // }
+      const res = await fetch('https://randomuser.me/api/?results=15')
+      const data = await res.json()
+
+      const notifications = data.results.map(el => ({
+        usernickname: el.login.username,
+        avatar: el.picture.medium,
+      }))
+      return notifications;
     }
 
   }

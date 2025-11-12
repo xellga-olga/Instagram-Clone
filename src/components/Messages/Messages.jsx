@@ -71,7 +71,7 @@ const Messages = () => {
                   <p>
                     Hello,Ann!How are you?
                   </p>
-                  <p>· 5 min</p>
+                  <p>· 5 {t('direct.time')}</p>
                 </div>
               </div>
             </div>
