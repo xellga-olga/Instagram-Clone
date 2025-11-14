@@ -67,7 +67,7 @@
 }
 
 .notificationsContentYesterday {
-    border-top: 1px solid #ddd;
+    border-top: 1px solid #d6d6d6;
     padding-top: 16px;
 }
 
@@ -117,4 +117,72 @@
     font-size: 12px;
     color: #8e8e8e;
     margin-top: 2px;
+}
+
+/* Filter Button */
+.notificationsFilterMenu {
+    position: absolute;
+    top: 50px;
+    left: 340px;
+    width: 260px;
+    background: #fff;
+    border: 1px solid #dbdbdb;
+    border-radius: 12px;
+    padding: 12px 0 10px;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+
+}
+
+.filterMenu h3 {
+    font-size: 14px;
+    font-weight: 600;
+    padding: 10px 16px 6px;
+    color: #262626;
+}
+
+.filterMenu {
+    border-bottom: 1px solid #efefef;
+    padding-bottom: 8px;
+    margin-bottom: 6px;
+}
+
+.filterItem {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 16px;
+    font-size: 14px;
+    cursor: pointer;
+    transition: background 0.15s ease;
+}
+
+.filterItem input {
+    width: 16px;
+    height: 16px;
+    cursor: pointer;
+}
+
+.filterItem:hover {
+    background: #fafafa;
+    border-radius: 6px;
+}
+
+.filterMenuBtn {
+    background: #0095f6;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 10px;
+    border: none;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+    width: 90%;
+    margin: 18px auto 18px;
+    display: block;
+}
+
+.filterMenuBtn:disabled {
+    background: #a1a1a1;
+    cursor: not-allowed;
+    opacity: 0.6;
 }

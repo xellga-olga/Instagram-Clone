@@ -103,5 +103,17 @@
   "notPersonalized": {
     "forYou": "Для вас",
     "notPersonalized": "Неперсонализированное"
+  },
+
+  "notificationsModal": {
+    "title": "Уведомления",
+    "filter": "Фильтровать",
+    "today": "Сегодня",
+    "yesterday": "Вчера",
+    "likedYourPost": "понравилась ваша публикация.",
+    "time": {
+      "today": "сегодня",
+      "yesterday": "вчера"
+    }
   }
 }

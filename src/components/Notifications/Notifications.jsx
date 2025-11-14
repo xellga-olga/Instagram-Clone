@@ -1,6 +1,7 @@
 import React, {useContext, useEffect, useState} from 'react';
 import './Notifications.css';
 import ApiContext from "../../context/ApiContext.js";
+import { useTranslation } from "react-i18next";
 
 // const usersNotifications = [
 //   {
@@ -20,6 +21,7 @@ import ApiContext from "../../context/ApiContext.js";
 // ];
 
 const Notifications = ({ onClose }) => {
+  const { t } = useTranslation();
   const {getNotifications} = useContext(ApiContext)
 
   const [users, setUsers] = useState([])
@@ -40,18 +42,49 @@ const Notifications = ({ onClose }) => {
     e.stopPropagation();
   };
 
+  const [filteredNotifications, setFilteredNotifications] = useState(false);
+
+  const toggleFilter = () => setFilteredNotifications(prev => !prev)
+
   return (
     <div className="notificationsContainer" onClick={handleOverlayClick}>
       <div className="notifications" onClick={handleContentClick}>
 
         <div className="notificationsHeader">
-          <h2>Уведомления</h2>
-          <button className="notificationsFilterBtn">Фильтровать</button>
+          <h2>{t('notificationsModal.title')}</h2>
+          <button
+            onClick={toggleFilter}
+            className="notificationsFilterBtn"
+          >{t('notificationsModal.filter')}</button>
+          {
+            filteredNotifications && (
+              <div className="notificationsFilterMenu">
+                <div className="filterMenu">
+                  <h3>Категории</h3>
+                  <label className="filterItem"><input type='checkbox'/>Метки и упоминания</label>
+
+                  <label className="filterItem"><input type='checkbox'/>Подписки</label>
+
+                  <label className="filterItem"><input type='checkbox'/>Комментарии</label>
+
+                </div>
+                <div className="filterMenu">
+                  <h3>Типы аккаунтов</h3>
+                  <label className="filterItem"><input type='checkbox'/>Подтвержденные</label>
+
+                  <label className="filterItem"><input type='checkbox'/>Вы подписаны на них</label>
+                </div>
+                <button className="filterMenuBtn">
+                  Применить
+                </button>
+              </div>
+            )
+          }
         </div>
 
         <div className="notificationsBody">
           <div className="notificationsContentToday">
-            <p className="notificationsToday">Сегодня</p>
+            <p className="notificationsToday">{t('notificationsModal.today')}</p>
 
             <div className="notificationsList">
               {todayUsers.map((user, i) => (
@@ -65,9 +98,9 @@ const Notifications = ({ onClose }) => {
                   </div>
                   <div className="notificationTextWrapper">
                     <p className="notificationText">
-                      <span className="notificationUser">{user.usernickname}</span> понравилась ваша публикация.
+                      <span className="notificationUser">{user.usernickname}</span> {t('notificationsModal.likedYourPost')}
                     </p>
-                    <span className="notificationTime">сегодня</span>
+                    <span className="notificationTime">{t('notificationsModal.time.today')}</span>
                   </div>
                 </div>
               ))}
@@ -76,7 +109,7 @@ const Notifications = ({ onClose }) => {
           </div>
 
           <div className='notificationsContentYesterday'>
-            <p className="notificationsYesterday">Вчера</p>
+            <p className="notificationsYesterday">{t('notificationsModal.yesterday')}</p>
 
             <div className="notificationsList">
               {yesterdayUsers.map((user, i) => (
@@ -90,9 +123,9 @@ const Notifications = ({ onClose }) => {
                   </div>
                   <div className="notificationTextWrapper">
                     <p className="notificationText">
-                      <span className="notificationUser">{user.usernickname}</span> понравилась ваша публикация.
+                      <span className="notificationUser">{user.usernickname}</span> {t('notificationsModal.likedYourPost')}
                     </p>
-                    <span className="notificationTime">вчера</span>
+                    <span className="notificationTime">{t('notificationsModal.time.yesterday')}</span>
                   </div>
                 </div>
               ))}

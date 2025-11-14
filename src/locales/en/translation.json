@@ -93,5 +93,17 @@
   "notPersonalized": {
     "forYou": "For you",
     "notPersonalized": "Not personalized"
+  },
+
+  "notificationsModal": {
+    "title": "Notifications",
+    "filter": "Filter",
+    "today": "Today",
+    "yesterday": "Yesterday",
+    "likedYourPost": "liked your post.",
+    "time": {
+      "today": "today",
+      "yesterday": "yesterday"
+    }
   }
 }
