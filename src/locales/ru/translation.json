@@ -115,5 +115,18 @@
       "today": "сегодня",
       "yesterday": "вчера"
     }
+  },
+
+  "notificationsModalFilter": {
+    "categories": "Категории",
+    "tagsMentions": "Метки и упоминания",
+    "subscriptions": "Подписки",
+    "comments": "Комментарии",
+
+    "accountTypes": "Типы аккаунтов",
+    "verified": "Подтвержденные",
+    "youFollow": "Вы подписаны на них",
+
+    "apply": "Применить"
   }
 }

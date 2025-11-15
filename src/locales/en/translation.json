@@ -105,5 +105,18 @@
       "today": "today",
       "yesterday": "yesterday"
     }
+  },
+
+  "notificationsModalFilter": {
+    "categories": "Categories",
+    "tagsMentions": "Tags & Mentions",
+    "subscriptions": "Follows",
+    "comments": "Comments",
+
+    "accountTypes": "Account types",
+    "verified": "Verified",
+    "youFollow": "You follow",
+
+    "apply": "Apply"
   }
 }

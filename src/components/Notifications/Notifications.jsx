@@ -44,6 +44,20 @@ const Notifications = ({ onClose }) => {
 
   const [filteredNotifications, setFilteredNotifications] = useState(false);
 
+  const [filterValues, setFilterValues] = useState({
+    tagsMentions: false,
+    subscriptions: false,
+    comments: false,
+    verified: false,
+    youFollow: false
+  });
+
+  const handleFilterChange = (key) => {
+    setFilterValues(prev => ({ ...prev, [key]: !prev[key] }));
+  };
+
+  const isApplyDisabled = !Object.values(filterValues).some(v => v === true);
+
   const toggleFilter = () => setFilteredNotifications(prev => !prev)
 
   return (
@@ -60,22 +74,57 @@ const Notifications = ({ onClose }) => {
             filteredNotifications && (
               <div className="notificationsFilterMenu">
                 <div className="filterMenu">
-                  <h3>Категории</h3>
-                  <label className="filterItem"><input type='checkbox'/>Метки и упоминания</label>
+                  <h3>{t('notificationsModalFilter.categories')}</h3>
+                  <label className="filterItem">
+                    <input
+                      type="checkbox"
+                      checked={filterValues.tagsMentions}
+                      onChange={() => handleFilterChange('tagsMentions')}
+                    />
+                    {t('notificationsModalFilter.tagsMentions')}
+                  </label>
 
-                  <label className="filterItem"><input type='checkbox'/>Подписки</label>
+                  <label className="filterItem">
+                    <input
+                      type="checkbox"
+                      checked={filterValues.subscriptions}
+                      onChange={() => handleFilterChange('subscriptions')}
+                    />
+                    {t('notificationsModalFilter.subscriptions')}
+                  </label>
 
-                  <label className="filterItem"><input type='checkbox'/>Комментарии</label>
+                  <label className="filterItem">
+                    <input
+                      type="checkbox"
+                      checked={filterValues.comments}
+                      onChange={() => handleFilterChange('comments')}
+                    />
+                    {t('notificationsModalFilter.comments')}
+                  </label>
 
                 </div>
                 <div className="filterMenu">
-                  <h3>Типы аккаунтов</h3>
-                  <label className="filterItem"><input type='checkbox'/>Подтвержденные</label>
+                  <h3>{t('notificationsModalFilter.accountTypes')}</h3>
+                  <label className="filterItem">
+                    <input
+                      type="checkbox"
+                      checked={filterValues.verified}
+                      onChange={() => handleFilterChange('verified')}
+                    />
+                    {t('notificationsModalFilter.verified')}
+                  </label>
 
-                  <label className="filterItem"><input type='checkbox'/>Вы подписаны на них</label>
+                  <label className="filterItem">
+                    <input
+                      type="checkbox"
+                      checked={filterValues.youFollow}
+                      onChange={() => handleFilterChange('youFollow')}
+                    />
+                    {t('notificationsModalFilter.youFollow')}
+                  </label>
                 </div>
-                <button className="filterMenuBtn">
-                  Применить
+                <button className="filterMenuBtn" disabled={isApplyDisabled}>
+                  {t('notificationsModalFilter.apply')}
                 </button>
               </div>
             )
