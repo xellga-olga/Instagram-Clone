@@ -10,6 +10,7 @@
     height: 400px;
     overflow: hidden;
     cursor: pointer;
+    position: relative;
 }
 
 .cardImage {
@@ -17,4 +18,36 @@
     height: 400px;
     object-fit: cover;
     display: block;
+    animation: fade .5s linear forwards;
+}
+
+.cardOverlay {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: white;
+
+}
+
+.cardUserProfile:hover .cardOverlay {
+    opacity: 1;
+}
+
+.cardOverlayItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 16px;
 }
