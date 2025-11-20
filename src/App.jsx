@@ -47,7 +47,12 @@ function App() {
             <Route path='/signup' element={<SignUp/>}/>
 
             <Route path='/' element={<Home/>}/>
+
             <Route path='/profile/:username' element={<Profile/>}/>
+            <Route path='/profile/:username/tagged' element={<Profile/>}/>
+            <Route path='/profile/:username/saved' element={<Profile/>}/>
+            <Route path='/profile/:username/reels' element={<Profile/>}/>
+
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/explore/not_personalized' element={<NotPersonalized/>}/>
             <Route path='/reels' element={<Reels/>}/>
