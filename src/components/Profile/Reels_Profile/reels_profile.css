@@ -1,0 +1,75 @@
+.reelsGrid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2px;
+    margin-top: 2px;
+}
+
+.reelsProfile {
+    width: 240px;
+    height: 380px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+}
+
+.reelsImage {
+    width: 240px;
+    height: 380px;
+    object-fit: cover;
+    display: block;
+    animation: .5s linear forwards;
+}
+
+.reelsOverlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+
+    background: rgba(0, 0, 0, 0.7);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    opacity: 0;
+    transition: opacity 0.2s ease;
+    color: white;
+
+}
+
+.reelsProfile:hover .reelsOverlay {
+    opacity: 1;
+}
+
+.reelsOverlayItem {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-weight: 600;
+    font-size: 16px;
+}
+
+.reelsOverlayStatic {
+    position: absolute;
+    right: 65%;
+    padding: 10px;
+    bottom: 10px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    font-size: 13px;
+    transition: opacity 180ms ease;
+}
+
+.staticItem {
+    display: flex;
+    gap: 6px;
+    align-items: center;
+    font-weight: 600;
+}
+
+.staticNumber {
+    font-size: 13px;
+}

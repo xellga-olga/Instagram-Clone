@@ -118,5 +118,10 @@
     "youFollow": "You follow",
 
     "apply": "Apply"
+  },
+
+  "tagged": {
+    "text_h2" : "Photo with you",
+    "text_p" : "This shows people who have tagged you in their photos."
   }
 }

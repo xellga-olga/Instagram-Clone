@@ -16,6 +16,10 @@ import createApi from "./context/api.js";
 import Messages from "./components/Messages/Messages.jsx";
 import Create from "./components/Create/Create.jsx";
 import Notifications from "./components/Notifications/Notifications.jsx";
+import Tagged_Profile from "./components/Profile/Tagged_Profile/Tagged_Profile.jsx";
+import CardUserProfile from "./components/Profile/CardUserProfile/CardUserProfile.jsx";
+import Saved_Profile from "./components/Profile/Saved_Profile/Saved_Profile.jsx";
+import Reels_Profile from "./components/Profile/Reels_Profile/Reels_Profile.jsx";
 
 
 function App() {
@@ -48,10 +52,12 @@ function App() {
 
             <Route path='/' element={<Home/>}/>
 
-            <Route path='/profile/:username' element={<Profile/>}/>
-            <Route path='/profile/:username/tagged' element={<Profile/>}/>
-            <Route path='/profile/:username/saved' element={<Profile/>}/>
-            <Route path='/profile/:username/reels' element={<Profile/>}/>
+            <Route path="/profile/:username" element={<Profile />}>
+              <Route index element={<CardUserProfile/>} />
+              <Route path="tagged" element={<Tagged_Profile />} />
+              <Route path="saved" element={<Saved_Profile />} />
+              <Route path="reels" element={<Reels_Profile />} />
+            </Route>
 
             <Route path='/explore' element={<Explore/>}/>
             <Route path='/explore/not_personalized' element={<NotPersonalized/>}/>

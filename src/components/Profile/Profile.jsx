@@ -4,6 +4,7 @@ import UserBio from "./UserBio/UserBio.jsx";
 import CardUserProfile from "./CardUserProfile/CardUserProfile.jsx";
 import StoryHighlights from "./StoryHighlights/StoryHighlights.jsx";
 import Tablist from "./Tablist/Tablist.jsx";
+import {Outlet} from "react-router-dom";
 
 const Profile = () => {
   return (
@@ -11,8 +12,8 @@ const Profile = () => {
         <UserBio />
         <div className='userContent'>
           <StoryHighlights />
-          <Tablist/>
-          <CardUserProfile className="userPageCard" />
+          <Tablist />
+          <Outlet />
         </div>
       </div>
   );
