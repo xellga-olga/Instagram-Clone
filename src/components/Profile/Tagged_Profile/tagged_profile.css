@@ -1,0 +1,39 @@
+.tagged-page {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 60px;
+}
+
+.tagged-empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    color: #393939;
+}
+
+.tagged-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+    width: 100px;
+    height: 100px;
+    border: 2px solid rgb(0, 0, 0);
+    margin-bottom: 20px ;
+}
+
+.tagged-empty h2 {
+    font-size: 20px;
+    font-weight: 600;
+    color: #000;
+    margin-bottom: 8px;
+}
+
+.tagged-empty p {
+    font-size: 14px;
+    color: #737373;
+    max-width: 260px;
+    line-height: 1.4;
+}

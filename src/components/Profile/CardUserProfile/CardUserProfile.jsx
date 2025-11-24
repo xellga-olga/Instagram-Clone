@@ -1,14 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './cardUserProfile.css'
 import { Heart, MessageCircle } from 'lucide-react';
+import ApiContext from "../../../context/ApiContext.js";
 
 const CardUserProfile = () => {
   const [imageUrl, setImageUrl] = useState([]);
 
+  const { getCardUserProfile } = useContext(ApiContext)
+
   useEffect(() => {
-    fetch('https://picsum.photos/v2/list?page=2&limit=12')
-      .then(res => res.json())
-      .then(image => setImageUrl(image));
+   getCardUserProfile()
+     .then((res) => {setImageUrl(res.res)})
   }, []);
 
   return (

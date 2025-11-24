@@ -62,16 +62,6 @@ const createApi = ()=> (
     },
 
     getNotifications: async () => {
-      // const resUsersNickName = await fetch('https://randomuser.me/api/?results=15')
-      // const resUsersAvatar = await fetch('https://randomuser.me/api/?results=15')
-      //
-      // const usersNickName = await resUsersNickName.json()
-      // const usersAvatar = await resUsersAvatar.json()
-      //
-      // return {
-      // usersNickName: usersNickName,
-      // usersAvatar: usersAvatar,
-      // }
       const res = await fetch('https://randomuser.me/api/?results=15')
       const data = await res.json()
 
@@ -80,7 +70,26 @@ const createApi = ()=> (
         avatar: el.picture.medium,
       }))
       return notifications;
+    },
+
+    getCardUserProfile: async () => {
+      const res = await fetch('https://picsum.photos/v2/list?page=2&limit=12')
+      const data = await res.json()
+
+      return {
+        res: data
+      }
+    },
+
+    getReelsProfile: async () => {
+      const res = await fetch('https://picsum.photos/v2/list?page=7&limit=4')
+      const data = await res.json()
+      return {
+        res: data
+      }
     }
+
+
 
   }
 )
