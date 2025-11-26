@@ -9,7 +9,6 @@
   "profile": "Profile",
   "threads": "Threads",
   "more": "More",
-
   "login": {
     "title": "Log in",
     "username": "Username",
@@ -20,13 +19,11 @@
     "noAccount": "Don’t have an account?",
     "signupLink": "Sign up"
   },
-
   "createModal": {
     "title": "Create publication",
     "dragText": "Drag photos and videos here",
     "button": "Select on computer"
   },
-
   "searchModal": {
     "title": "Search request",
     "placeholder": "Search",
@@ -34,7 +31,6 @@
     "noRecent": "No recent requests.",
     "followers": "Followers: {{count}}"
   },
-
   "sendMessage": {
     "title": "New message",
     "to": "Whom:",
@@ -42,7 +38,6 @@
     "recommend": "Recommend",
     "button": "Chat"
   },
-
   "direct": {
     "placeholder": "Search",
     "title": "Messages",
@@ -52,7 +47,6 @@
     "button": "Send message",
     "time": "min"
   },
-
   "userBio": {
     "editProfile": "Edit profile",
     "viewArchive": "View the archive",
@@ -60,7 +54,6 @@
     "subscribers": "subscribers",
     "subscriptions": "subscriptions"
   },
-
   "rightSide": {
     "switch": "Switch",
     "recommendations": "Recommendations for you",
@@ -72,29 +65,23 @@
     "privacy": "Privacy",
     "terms": "Terms"
   },
-
   "likesBlock": {
     "likes": "Likes"
   },
-
   "addComment": {
     "placeholder": "Add a comment..."
   },
-
   "viewAllComments": {
     "text": "View all comments ({{count}})"
   },
-
   "discover": {
     "forYou": "For you",
     "notPersonalized": "Not personalized"
   },
-
   "notPersonalized": {
     "forYou": "For you",
     "notPersonalized": "Not personalized"
   },
-
   "notificationsModal": {
     "title": "Notifications",
     "filter": "Filter",
@@ -106,29 +93,41 @@
       "yesterday": "yesterday"
     }
   },
-
   "notificationsModalFilter": {
     "categories": "Categories",
     "tagsMentions": "Tags & Mentions",
     "subscriptions": "Follows",
     "comments": "Comments",
-
     "accountTypes": "Account types",
     "verified": "Verified",
     "youFollow": "You follow",
-
     "apply": "Apply"
   },
-
   "tagged": {
-    "text_h2" : "Photo with you",
-    "text_p" : "This shows people who have tagged you in their photos."
+    "text_h2": "Photo with you",
+    "text_p": "This shows people who have tagged you in their photos."
   },
-
   "saved_profile": {
     "text_h5": "The saved list is visible only to you",
     "text_btn": "New collection",
-    "text_body_publication" : "All publications",
-    "text_body_audio" : "Audio tracks"
+    "text_body_publication": "All publications",
+    "text_body_audio": "Audio tracks"
+  },
+  "footerLinks": {
+    "meta": "Meta",
+    "info": "Information",
+    "blog": "Blog",
+    "jobs": "Jobs",
+    "help": "Help",
+    "api": "API",
+    "privacy": "Privacy",
+    "terms": "Terms",
+    "locations": "Locations",
+    "instagramLite": "Instagram Lite",
+    "metaAi": "Meta AI",
+    "metaAiArticles": "Meta AI Articles",
+    "threads": "Threads",
+    "contactUploading": "Contact Uploading",
+    "metaVerified": "Meta Verified"
   }
 }
