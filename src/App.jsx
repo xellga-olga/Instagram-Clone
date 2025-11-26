@@ -20,6 +20,8 @@ import Tagged_Profile from "./components/Profile/Tagged_Profile/Tagged_Profile.j
 import CardUserProfile from "./components/Profile/CardUserProfile/CardUserProfile.jsx";
 import Saved_Profile from "./components/Profile/Saved_Profile/Saved_Profile.jsx";
 import Reels_Profile from "./components/Profile/Reels_Profile/Reels_Profile.jsx";
+import Footer from "./components/Footer/Footer.jsx";
+
 
 
 function App() {
@@ -63,6 +65,7 @@ function App() {
             <Route path='/explore/not_personalized' element={<NotPersonalized/>}/>
             <Route path='/reels' element={<Reels/>}/>
             <Route path='/direct' element={<Messages />}/>
+
           </Routes>
 
           {searchOpen && (
@@ -77,7 +80,7 @@ function App() {
             <Notifications onClose={() => setNotificationsOpen(false)} />
           )}
 
-
+          <Footer />
 
         </div>
       </div>

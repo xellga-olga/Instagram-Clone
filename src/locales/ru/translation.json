@@ -121,5 +121,22 @@
     "text_btn": "Новая подборка",
     "text_body_publication" : "Все публикации",
     "text_body_audio" : "Аудиодорожки"
+  },
+  "footerLinks": {
+    "meta": "Meta",
+    "info": "Информация",
+    "blog": "Блог",
+    "jobs": "Вакансии",
+    "help": "Помощь",
+    "api": "API",
+    "privacy": "Конфиденциальность",
+    "terms": "Условия",
+    "locations": "Места",
+    "instagramLite": "Instagram Lite",
+    "metaAi": "Meta AI",
+    "metaAiArticles": "Статьи Meta AI",
+    "threads": "Threads",
+    "contactUploading": "Загрузка контактов",
+    "metaVerified": "Meta Verified"
   }
 }
