@@ -29,3 +29,71 @@
 .new_collection:hover {
     border-bottom: 1px solid #1e8aff;
 }
+
+.saved_profile__content {
+    display: flex;
+    justify-content: center;
+}
+
+.saved_profile__body {
+    margin-top: 16px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    width: 80%;
+    gap: 8px;
+}
+
+.saved_all,
+.saved_audio {
+    position: relative;
+    height: 0;
+    padding-bottom: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.saved_collection {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    inset: 0;
+    text-decoration: none;
+}
+
+.saved_collection img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.savedOverlay {
+    position: absolute;
+    left: 8px;
+    bottom: 8px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    font-size: 20px;
+    pointer-events: none;
+    letter-spacing: 2px;
+}
+
+.savedOverlay h5 {
+    margin: 0;
+    font-weight: 600;
+    color: #fff;
+}
+
+
+
+@media (max-width: 480px) {
+    .saved_profile__body {
+        grid-template-columns: 1fr;
+    }
+}

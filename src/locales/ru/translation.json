@@ -9,7 +9,6 @@
   "profile": "Профиль",
   "threads": "Threads",
   "more": "Ещё",
-
   "login": {
     "title": "Вход",
     "username": "Имя пользователя",
@@ -20,7 +19,6 @@
     "noAccount": "Нет аккаунта?",
     "signupLink": "Зарегистрироваться"
   },
-
   "signup": {
     "title": "Регистрация",
     "email": "Электронная почта",
@@ -30,13 +28,11 @@
     "haveAccount": "Уже есть аккаунт?",
     "loginLink": "Войти"
   },
-
   "createModal": {
     "title": "Создать публикацию",
     "dragText": "Перетащите фото и видео сюда",
     "button": "Выбрать на компьютере"
   },
-
   "searchModal": {
     "title": "Поисковой запрос",
     "placeholder": "Поиск",
@@ -44,7 +40,6 @@
     "noRecent": "Нет недавних запросов.",
     "followers": "Подписчики: {{count}}"
   },
-
   "sendMessage": {
     "title": "Новое сообщение",
     "to": "Кому:",
@@ -52,7 +47,6 @@
     "recommend": "Рекомендации",
     "button": "Чат"
   },
-
   "direct": {
     "placeholder": "Поиск",
     "title": "Сообщения",
@@ -62,7 +56,6 @@
     "button": "Отправить сообщение",
     "time": "мин."
   },
-
   "userBio": {
     "editProfile": "Редактировать профиль",
     "viewArchive": "Посмотреть архив",
@@ -70,7 +63,6 @@
     "subscribers": "подписчики",
     "subscriptions": "подписки"
   },
-
   "rightSide": {
     "switch": "Переключить",
     "recommendations": "Рекомендации для вас",
@@ -82,29 +74,23 @@
     "privacy": "Конфиденциальность",
     "terms": "Условия"
   },
-
   "likesBlock": {
     "likes": "лайков"
   },
-
   "addComment": {
     "placeholder": "Добавьте комментарий..."
   },
-
   "viewAllComments": {
     "text": "Посмотреть все комментарии ({{count}})"
   },
-
   "discover": {
     "forYou": "Для вас",
     "notPersonalized": "Неперсонализированное"
   },
-
   "notPersonalized": {
     "forYou": "Для вас",
     "notPersonalized": "Неперсонализированное"
   },
-
   "notificationsModal": {
     "title": "Уведомления",
     "filter": "Фильтровать",
@@ -116,22 +102,24 @@
       "yesterday": "вчера"
     }
   },
-
   "notificationsModalFilter": {
     "categories": "Категории",
     "tagsMentions": "Метки и упоминания",
     "subscriptions": "Подписки",
     "comments": "Комментарии",
-
     "accountTypes": "Типы аккаунтов",
     "verified": "Подтвержденные",
     "youFollow": "Вы подписаны на них",
-
     "apply": "Применить"
   },
-
   "tagged": {
-    "text_h2" : "Фото с вами",
-    "text_p" : "Здесь показываются люди, отметившие вас на фото."
+    "text_h2": "Фото с вами",
+    "text_p": "Здесь показываются люди, отметившие вас на фото."
+  },
+  "saved_profile": {
+    "text_h5": "Список сохраненного виден только вам",
+    "text_btn": "Новая подборка",
+    "text_body_publication" : "Все публикации",
+    "text_body_audio" : "Аудиодорожки"
   }
 }
