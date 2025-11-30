@@ -1,4 +1,4 @@
-import React from "react";
+import React, {useState} from "react";
 import {
   Box,
   Button,
@@ -7,12 +7,55 @@ import {
   Typography,
   Link,
 } from "@mui/material";
-import inst_logo from "../../assets/inst_logo.png";
+import inst_logo from "../../../assets/inst_logo.png";
+import {signInWithEmailAndPassword} from "firebase/auth";
+import {auth} from "../../../firebase.js";
+import { Link as RouterLink } from "react-router-dom";
+
 
 const LoginForm = () => {
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const [error, setError] = useState("");
+  const [loading, setLoading] = useState(false);
+
+  function login(e) {
+    e.preventDefault();
+    if (loading) return;
+
+    // trim spaces and normalize email (helps when user pastes or types with spaces)
+    const emailTrim = email.trim().toLowerCase();
+
+    if (!emailTrim || !emailTrim.includes('@')) {
+      setError('Введите корректный e-mail.');
+      return;
+    }
+
+    if (!password) {
+      setError('Введите пароль.');
+      return;
+    }
+
+    setError('');
+    setLoading(true);
+
+    signInWithEmailAndPassword(auth, emailTrim, password)
+      .then(user => {
+        console.log('Logged in:', user);
+        setEmail('');
+        setPassword('');
+        setError('');
+      })
+      .catch(err => {
+        setError('Sign-in error');
+        console.log('Sign-in error:', err);
+      })
+      .finally(() => setLoading(false));
+  }
+
   return (
-    <Box
-      sx={{
+    <Box component="form" onSubmit={login}
+         sx={{
         width: 350,
         p: 3,
         border: "1px solid #dbdbdb",
@@ -35,6 +78,8 @@ const LoginForm = () => {
         size="small"
         label="Phone number, username, or email"
         sx={{ mb: 2 }}
+        value={email}
+        onChange={(e) => setEmail(e.target.value)}
       />
       <TextField
         fullWidth
@@ -43,10 +88,14 @@ const LoginForm = () => {
         label="Password"
         type="password"
         sx={{ mb: 2 }}
+        value={password}
+        onChange={(e) => setPassword(e.target.value)}
       />
 
       {/* Login button */}
       <Button
+        type="submit"
+        disabled={loading}
         fullWidth
         variant="contained"
         sx={{
@@ -59,6 +108,8 @@ const LoginForm = () => {
       >
         Log In
       </Button>
+
+      {error ? <p style={{color:'red'}}>{error}</p> : ''}
 
       {/* Divider */}
       <Divider sx={{ width: "100%", mb: 2 }}>OR</Divider>
@@ -99,7 +150,7 @@ const LoginForm = () => {
       >
         <Typography variant="body2">
           Don’t have an account?{" "}
-          <Link href="#" underline="none" sx={{ color: "#0095f6", fontWeight: "bold" }}>
+          <Link component={RouterLink} to="/signup" underline="none" sx={{ color: "#0095f6", fontWeight: "bold" }}>
             Sign up
           </Link>
         </Typography>
@@ -108,4 +159,4 @@ const LoginForm = () => {
   );
 };
 
-export default LoginForm;2
+export default LoginForm;

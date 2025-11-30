@@ -1,5 +1,5 @@
 import React from 'react';
-import instLoginImage from '../../assets/loginImage.png'
+import instLoginImage from '../../../assets/loginImage.png'
 
 const LoginImg = () => {
   return (
