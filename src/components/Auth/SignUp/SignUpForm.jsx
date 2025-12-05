@@ -3,7 +3,7 @@ import {Box, Button, Divider, Link, TextField, Typography,} from '@mui/material'
 import inst_logo from '../../../assets/inst_logo.png';
 import {auth} from "../../../firebase.js";
 import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
-import { Link as RouterLink } from "react-router-dom";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
 
 const SignUpForm = () => {
   const [email, setEmail] = useState('');
@@ -12,6 +12,8 @@ const SignUpForm = () => {
   const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
+
+  const navigate = useNavigate();
 
   function register(e) {
     e.preventDefault();
@@ -32,6 +34,8 @@ const SignUpForm = () => {
         setUsername('');
         setFullName('');
         setConfirmPassword('');
+
+        navigate('/home');
       })
       .catch((error) => {
         console.log(error, 'Error email');

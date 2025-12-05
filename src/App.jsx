@@ -1,7 +1,7 @@
 import './App.css'
 import Login from "./components/Auth/Login/Login.jsx";
 import SignUp from "./components/Auth/SignUp/SignUp.jsx";
-import {Route, Routes} from "react-router-dom";
+import { Route, Routes, useLocation, Navigate } from "react-router-dom";
 import Home from "./components/Home/Home.jsx";
 import Profile from "./components/Profile/Profile.jsx";
 import LeftSide from "./components/Home/LeftSide/LeftSide.jsx";
@@ -22,80 +22,89 @@ import Saved_Profile from "./components/Profile/Saved_Profile/Saved_Profile.jsx"
 import Reels_Profile from "./components/Profile/Reels_Profile/Reels_Profile.jsx";
 import Footer from "./components/Footer/Footer.jsx";
 import Saved_Audio from "./components/Profile/Saved_Profile/audio/Saved_Audio.jsx";
-
-
+import AuthDetails from "./components/Auth/AuthDetails.jsx";
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
-
   const [createOpen, setCreateOpen] = useState(false);
-
   const [notificationsOpen, setNotificationsOpen] = useState(false);
 
-
   const api = createApi();
+  const location = useLocation();
 
 
+  const mainRoutesPrefixes = [
+    '/home',
+    '/profile',
+    '/explore',
+    '/reels',
+    '/direct',
+    '/saved',
+  ];
+
+  const isMainRoute = mainRoutesPrefixes.some(prefix => location.pathname.startsWith(prefix));
 
   return (
     <ApiContext.Provider value={api}>
+
 
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<SignUp/>}/>
 
-        <Route path='*' element={<Login/>}/>
+        <Route path='/' element={<AuthDetails />}/>
       </Routes>
 
-      {/*<div className="App">*/}
-      {/*  <div className='left-side-home'>*/}
-      {/*    <LeftSide*/}
-      {/*      setSearchOpen={setSearchOpen}*/}
-      {/*      setCreateOpen={setCreateOpen}*/}
-      {/*      setNotificationsOpen={setNotificationsOpen}*/}
-      {/*    />*/}
-      {/*  </div>*/}
+      {isMainRoute && (
+        <div className="App">
+          <div className='left-side-home'>
+            <LeftSide
+              setSearchOpen={setSearchOpen}
+              setCreateOpen={setCreateOpen}
+              setNotificationsOpen={setNotificationsOpen}
+            />
+          </div>
 
-      {/*  <div className='middle-side-home'>*/}
-      {/*    <Routes>*/}
+          <div className='middle-side-home'>
+            <Routes>
 
+              <Route path='/home' element={<Home/>}/>
 
-      {/*      <Route path='/' element={<Home/>}/>*/}
+              <Route path="/profile/:username" element={<Profile />}>
+                <Route index element={<CardUserProfile/>} />
+                <Route path="tagged" element={<Tagged_Profile />} />
+                <Route path="saved" element={<Saved_Profile />} />
+                <Route path="reels" element={<Reels_Profile />} />
+              </Route>
 
-      {/*      <Route path="/profile/:username" element={<Profile />}>*/}
-      {/*        <Route index element={<CardUserProfile/>} />*/}
-      {/*        <Route path="tagged" element={<Tagged_Profile />} />*/}
-      {/*        <Route path="saved" element={<Saved_Profile />} />*/}
-      {/*        <Route path="reels" element={<Reels_Profile />} />*/}
-      {/*      </Route>*/}
+              <Route path="/saved/audio" element={<Saved_Audio/>} />
 
-      {/*      <Route path="saved/audio" element={<Saved_Audio/>} />*/}
+              <Route path='/explore' element={<Explore/>}/>
+              <Route path='/explore/not_personalized' element={<NotPersonalized/>}/>
+              <Route path='/reels' element={<Reels/>}/>
+              <Route path='/direct' element={<Messages />}/>
 
-      {/*      <Route path='/explore' element={<Explore/>}/>*/}
-      {/*      <Route path='/explore/not_personalized' element={<NotPersonalized/>}/>*/}
-      {/*      <Route path='/reels' element={<Reels/>}/>*/}
-      {/*      <Route path='/direct' element={<Messages />}/>*/}
+            </Routes>
 
-      {/*    </Routes>*/}
+            {searchOpen && (
+              <Search onClose={() => setSearchOpen(false)} />
+            )}
 
-      {/*    {searchOpen && (*/}
-      {/*      <Search onClose={() => setSearchOpen(false)} />*/}
-      {/*    )}*/}
+            {createOpen && (
+              <Create onClose={() => setCreateOpen(false)} />
+            )}
 
-      {/*    {createOpen && (*/}
-      {/*      <Create onClose={() => setCreateOpen(false)} />*/}
-      {/*    )}*/}
+            {notificationsOpen && (
+              <Notifications onClose={() => setNotificationsOpen(false)} />
+            )}
 
-      {/*    {notificationsOpen && (*/}
-      {/*      <Notifications onClose={() => setNotificationsOpen(false)} />*/}
-      {/*    )}*/}
+            <Footer />
 
-      {/*    <Footer />*/}
+          </div>
+        </div>
+      )}
 
-      {/*  </div>*/}
-      {/*</div>*/}
     </ApiContext.Provider>
-
   )
 }
 

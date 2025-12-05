@@ -17,7 +17,7 @@ const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
       </div>
 
       <div className='navlinkPart'>
-        <NavLink to='/' className='navlink'>
+        <NavLink to='/home' className='navlink'>
           <House size={25}/>
           <div className='navHome'>{t('home')}</div>
         </NavLink>
