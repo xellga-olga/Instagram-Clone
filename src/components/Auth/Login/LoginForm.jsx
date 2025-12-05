@@ -10,7 +10,7 @@ import {
 import inst_logo from "../../../assets/inst_logo.png";
 import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../../firebase.js";
-import { Link as RouterLink } from "react-router-dom";
+import {Link as RouterLink, useNavigate} from "react-router-dom";
 
 
 const LoginForm = () => {
@@ -19,11 +19,13 @@ const LoginForm = () => {
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
+  const navigate = useNavigate();
+
   function login(e) {
     e.preventDefault();
     if (loading) return;
 
-    // trim spaces and normalize email (helps when user pastes or types with spaces)
+
     const emailTrim = email.trim().toLowerCase();
 
     if (!emailTrim || !emailTrim.includes('@')) {
@@ -45,6 +47,7 @@ const LoginForm = () => {
         setEmail('');
         setPassword('');
         setError('');
+        navigate('/home')
       })
       .catch(err => {
         setError('Sign-in error');
