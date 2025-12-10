@@ -138,5 +138,10 @@
     "threads": "Threads",
     "contactUploading": "Загрузка контактов",
     "metaVerified": "Meta Verified"
+  },
+  "welcome": {
+    "title": "Добро пожаловать",
+    "subtitle": "Ваш аккаунт успешно создан!",
+    "button": "Перейти в приложение"
   }
 }
