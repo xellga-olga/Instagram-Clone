@@ -129,5 +129,10 @@
     "threads": "Threads",
     "contactUploading": "Contact Uploading",
     "metaVerified": "Meta Verified"
+  },
+  "welcome": {
+    "title": "Welcome",
+    "subtitle": "Your account has been successfully created!",
+    "button": "Go to the app"
   }
 }

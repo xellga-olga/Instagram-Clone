@@ -1,8 +1,11 @@
 import { Box, Typography, Button } from "@mui/material";
 import { useNavigate } from "react-router-dom";
+import {useTranslation} from "react-i18next";
+import { PartyPopper } from 'lucide-react';
 
 const Welcome = () => {
   const navigate = useNavigate();
+  const {t} = useTranslation();
 
   return (
     <Box
@@ -14,18 +17,19 @@ const Welcome = () => {
       }}
     >
       <Typography variant="h5" sx={{ mb: 5 }}>
-        Welcome 🎉
+        {t("welcome.title")} <PartyPopper />
       </Typography>
 
       <Typography sx={{ mb: 5 }}>
-        Ваш аккаунт успешно создан!
+        {t("welcome.subtitle")}
       </Typography>
 
       <Button
         variant="contained"
         onClick={() => navigate("/home")}
       >
-        Перейти в приложение
+        {t("welcome.button")}
+
       </Button>
     </Box>
   );
