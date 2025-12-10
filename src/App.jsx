@@ -23,6 +23,7 @@ import Reels_Profile from "./components/Profile/Reels_Profile/Reels_Profile.jsx"
 import Footer from "./components/Footer/Footer.jsx";
 import Saved_Audio from "./components/Profile/Saved_Profile/audio/Saved_Audio.jsx";
 import AuthDetails from "./components/Auth/AuthDetails.jsx";
+import Welcome from "./components/Auth/SignUp/Welcome.jsx";
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -53,6 +54,7 @@ function App() {
         <Route path='/signup' element={<SignUp/>}/>
 
         <Route path='/' element={<AuthDetails />}/>
+        <Route path="/welcome" element={<Welcome/>} />
       </Routes>
 
       {isMainRoute && (

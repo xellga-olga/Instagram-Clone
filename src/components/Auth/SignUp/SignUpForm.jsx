@@ -9,7 +9,6 @@ const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
-  const [fullName, setFullName] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
   const [error, setError] = useState('');
   const [usernameError, setUsernameError] = useState('');
@@ -19,26 +18,19 @@ const SignUpForm = () => {
   const navigate = useNavigate();
 
 
-  const usernameRules = 'Допустимо: (A–Z), (0–9), (.), (_). Без пробелов. Max 10 символов.';
+  const usernameRules = 'Допустимо: (a–z), (0–9), (.), (_). Без пробелов. Max 10 символов.';
 
   function validateUsername(u) {
-    if (!u) {
-      return {valid: false, message: 'Введите имя пользователя.'};
-    }
-    if (u.length > 10) {
-      return {valid: false, message: 'Имя пользователя должно быть не более 10 символов.'};
-    }
 
-    for (let i = 0; i < u.length; i++) {
+    for (let i = 1; i < u.length; i++) {
       const c = u[i];
       if (!(
-        (c >= 'A' && c <= 'Z') ||
         (c >= 'a' && c <= 'z') ||
-        (c >= '0' && c <= '9') ||
+        (c >= '1' && c <= '9') ||
         c === '.' ||
         c === '_'
       )) {
-        return {valid: false, message: 'Можно использовать только буквы (A-Z), цифры, точки и подчёркивания.'};
+        return {valid: false, message: 'Можно использовать только буквы (a-z), цифры, точки и подчёркивания.'};
       }
     }
     return {valid: true, message: ''};
@@ -84,17 +76,16 @@ const SignUpForm = () => {
     createUserWithEmailAndPassword(auth, email.trim().toLowerCase(), password)
       .then((userCredential) => {
         const user = userCredential.user;
-        return updateProfile(user, {displayName: username || fullName});
+        return updateProfile(user, {displayName: username});
       })
       .then(() => {
         setError('');
         setEmail('');
         setPassword('');
         setUsername('');
-        setFullName('');
         setConfirmPassword('');
 
-        navigate('/home');
+        navigate('/welcome');
       })
       .catch((err) => {
         let message = '';
@@ -168,14 +159,7 @@ const SignUpForm = () => {
         }}
         autoFocus
       />
-      <TextField
-        fullWidth
-        variant="outlined"
-        size="small"
-        label="Full name"
-        value={fullName}
-        onChange={(e) => setFullName(e.target.value)}
-      />
+
       <TextField
         fullWidth
         variant="outlined"
