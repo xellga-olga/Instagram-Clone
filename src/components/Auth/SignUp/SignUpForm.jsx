@@ -5,6 +5,32 @@ import {auth} from "../../../firebase.js";
 import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import {Link as RouterLink, useNavigate} from "react-router-dom";
 
+// Валидация имени пользователя: только строчные буквы, цифры, точки и подчёркивания
+function validateUsername(u) {
+
+  // Проверяем, что имя соответствует шаблону
+  for (let i = 0; i < u.length; i++) {
+    const c = u[i];
+    if (!(
+      (c >= 'a' && c <= 'z') ||
+      (c >= '0' && c <= '9') ||
+      c === '.' ||
+      c === '_'
+    )) {
+      return {valid: false, message: 'Можно использовать только буквы (a-z), цифры, точки и подчёркивания.'};
+    }
+  }
+  return {valid: true, message: ''};
+}
+
+function validateEmail(e) {
+  if (!e) return false;
+  if (e.indexOf('@') === -1) return false;
+  if (e.indexOf('.') === -1) return false;
+  if (e.includes(' ')) return false;
+  return true;
+}
+
 const SignUpForm = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
@@ -19,30 +45,6 @@ const SignUpForm = () => {
 
 
   const usernameRules = 'Допустимо: (a–z), (0–9), (.), (_). Без пробелов. Max 10 символов.';
-
-  function validateUsername(u) {
-
-    for (let i = 1; i < u.length; i++) {
-      const c = u[i];
-      if (!(
-        (c >= 'a' && c <= 'z') ||
-        (c >= '1' && c <= '9') ||
-        c === '.' ||
-        c === '_'
-      )) {
-        return {valid: false, message: 'Можно использовать только буквы (a-z), цифры, точки и подчёркивания.'};
-      }
-    }
-    return {valid: true, message: ''};
-  }
-
-  function validateEmail(e) {
-    if (!e) return false;
-    if (e.indexOf('@') === -1) return false;
-    if (e.indexOf('.') === -1) return false;
-    if (e.includes(' ')) return false;
-    return true;
-  }
 
   function register(e) {
     e.preventDefault();
@@ -107,6 +109,8 @@ const SignUpForm = () => {
       .finally(() => setLoading(false));
   }
 
+  let v = e.target.value.toLowerCase().replace(/\s+/g, '');
+
   return (
     <Box component="form" onSubmit={register}
          sx={{
@@ -169,28 +173,22 @@ const SignUpForm = () => {
         error={Boolean(usernameError)}
         helperText={usernameError || usernameRules}
         onChange={(e) => {
-          let v = e.target.value.replace(/\s+/g, '');
-          if (v.length > 30) v = v.slice(0, 30);
+          // Приводим к нижнему регистру и удаляем пробелы
+          let v = e.target.value.toLowerCase().replace(/\s+/g, '');
+          // Ограничиваем длину до 10 символов
+          if (v.length > 10) v = v.slice(0, 10);
           setUsername(v);
 
-          let errorMsg = '';
-          for (let i = 0; i < v.length; i++) {
-            const c = v[i];
-            if (!(
-              (c >= 'A' && c <= 'Z') ||
-              (c >= 'a' && c <= 'z') ||
-              (c >= '0' && c <= '9') ||
-              c === '.' ||
-              c === '_'
-            )) {
-              errorMsg = 'Можно использовать только буквы (A-Z), цифры, точки и подчёркивания.';
-              break;
-            }
+          // Проверка допустимых символов
+          const re = /^[a-z0-9._]*$/;
+          // Проверяем, что введены только разрешённые символы
+          if (v && !re.test(v)) {
+            setUsernameError('Можно использовать только буквы (a-z), цифры, точки и подчёркивания.');
+          } else if (v.length > 10) {
+            setUsernameError('Имя пользователя должно быть не более 10 символов.');
+          } else {
+            setUsernameError('');
           }
-          if (!errorMsg && v.length > 30) {
-            errorMsg = 'Имя пользователя должно быть не более 30 символов.';
-          }
-          setUsernameError(errorMsg);
         }}
       />
       <TextField
