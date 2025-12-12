@@ -109,7 +109,6 @@ const SignUpForm = () => {
       .finally(() => setLoading(false));
   }
 
-  let v = e.target.value.toLowerCase().replace(/\s+/g, '');
 
   return (
     <Box component="form" onSubmit={register}
