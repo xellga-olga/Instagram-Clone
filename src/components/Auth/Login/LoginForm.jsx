@@ -12,52 +12,71 @@ import {signInWithEmailAndPassword} from "firebase/auth";
 import {auth} from "../../../firebase.js";
 import {Link as RouterLink, useNavigate} from "react-router-dom";
 
+import { collection, getDocs } from "firebase/firestore";
+import { db } from "../../../firebase.js";
+
 
 const LoginForm = () => {
-  const [email, setEmail] = useState("");
+  // const [email, setEmail] = useState("");
+  const [login, setLogin] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
 
-  function login(e) {
+  async function findEmailByUsername(username) {
+    const usersSnapshot = await getDocs(collection(db, "users"));
+
+    for (let doc of usersSnapshot.docs) {
+      const data = doc.data();
+      if (data.username === username) {
+        return data.email;
+      }
+    }
+
+    return null;
+  }
+
+  async function handleLogin(e) {
     e.preventDefault();
     if (loading) return;
-
-
-    const emailTrim = email.trim().toLowerCase();
-
-    if (!emailTrim || !emailTrim.includes('@')) {
-      setError('Введите корректный e-mail.');
-      return;
-    }
-
-    if (!password) {
-      setError('Введите пароль.');
-      return;
-    }
 
     setError('');
     setLoading(true);
 
-    signInWithEmailAndPassword(auth, emailTrim, password)
-      .then(user => {
-        console.log('Logged in:', user);
-        setEmail('');
-        setPassword('');
-        setError('');
-        navigate('/home')
-      })
-      .catch(err => {
-        setError('Sign-in error');
-        console.log('Sign-in error:', err);
-      })
-      .finally(() => setLoading(false));
+    let loginValue = login.trim().toLowerCase();
+    let emailToLogin = loginValue;
+
+    try {
+      //если нет @ — значит это username
+      if (!loginValue.includes('@')) {
+        const foundEmail = await findEmailByUsername(loginValue);
+
+        if (!foundEmail) {
+          setError('Пользователь не найден');
+          setLoading(false);
+          return;
+        }
+
+        emailToLogin = foundEmail;
+      }
+
+      await signInWithEmailAndPassword(auth, emailToLogin, password);
+
+      setLogin('');
+      setPassword('');
+      navigate('/home');
+
+    } catch (err) {
+      setError('Неверный логин или пароль');
+    } finally {
+      setLoading(false);
+    }
   }
 
   return (
-    <Box component="form" onSubmit={login}
+    <Box component="form" onSubmit={handleLogin}
          sx={{
         width: 350,
         p: 3,
@@ -81,8 +100,8 @@ const LoginForm = () => {
         size="small"
         label="Phone number, username, or email"
         sx={{ mb: 2 }}
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        value={login}
+        onChange={(e) => setLogin(e.target.value)}
       />
       <TextField
         fullWidth
@@ -114,7 +133,6 @@ const LoginForm = () => {
 
       {error ? <p style={{color:'red'}}>{error}</p> : ''}
 
-      {/* Divider */}
       <Divider sx={{ width: "100%", mb: 2 }}>OR</Divider>
 
       {/* Login with Facebook */}
