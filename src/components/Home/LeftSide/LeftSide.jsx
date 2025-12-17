@@ -6,9 +6,12 @@ import profile_image from '../../../assets/profile_image.jpg'
 import {NavLink} from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
+import { auth } from '../../../firebase';
 
 const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
   const { t, i18n } = useTranslation();
+
+  const username = auth.currentUser?.displayName;
 
   return (
     <div className='left-side'>
@@ -66,7 +69,7 @@ const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
           <div className='navHome'>{t('create')}</div>
         </NavLink>
 
-        <NavLink to='/profile/olya__pla' className='navlink'>
+        <NavLink to={`/profile/${username}`} className='navlink'>
           <img src={profile_image} alt='profile image' className='profile_image' />
           <div className='navHome'>{t('profile')}</div>
         </NavLink>
