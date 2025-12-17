@@ -154,7 +154,7 @@ const SignUpForm = () => {
         fullWidth
         variant="outlined"
         size="small"
-        label="Mobile number or email"
+        label="Email"
         value={email}
         onChange={(e) => {
           setEmail(e.target.value);

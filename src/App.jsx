@@ -47,13 +47,12 @@ function App() {
 
   return (
     <ApiContext.Provider value={api}>
+      <AuthDetails />
 
 
       <Routes>
         <Route path='/login' element={<Login/>}/>
         <Route path='/signup' element={<SignUp/>}/>
-
-        <Route path='/' element={<AuthDetails />}/>
         <Route path="/welcome" element={<Welcome/>} />
       </Routes>
 
@@ -99,6 +98,8 @@ function App() {
             {notificationsOpen && (
               <Notifications onClose={() => setNotificationsOpen(false)} />
             )}
+
+
 
             <Footer />
 

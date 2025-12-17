@@ -98,7 +98,7 @@ const LoginForm = () => {
         fullWidth
         variant="outlined"
         size="small"
-        label="Phone number, username, or email"
+        label="Username or email"
         sx={{ mb: 2 }}
         value={login}
         onChange={(e) => setLogin(e.target.value)}

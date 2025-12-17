@@ -3,6 +3,7 @@ import './rightSide.css'
 import profile_image from "../../../assets/profile_image.jpg";
 import {Link} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
+import {auth} from "../../../firebase.js";
 
 
 const RightSide = () => {
@@ -24,6 +25,8 @@ const RightSide = () => {
       .then(data => setUsers(data))
   }, []);
 
+  const username = auth.currentUser?.displayName;
+
   return (
     <div className='right-side'>
       <div className='user-profile'>
@@ -33,7 +36,7 @@ const RightSide = () => {
           </div>
 
           <div className='user-name'>
-            <Link to='/profile/olya__pla' className='user-nickname'>olya__pla</Link>
+            <Link to={`/profile/${username}`}  className='user-nickname'>olya__pla</Link>
           </div>
 
         </div>
