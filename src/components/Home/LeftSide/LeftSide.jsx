@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import './leftSide.css'
 import inst_logo from '../../../assets/inst_logo.png'
 import {AtSign, Compass, Film, Heart, House, Menu, MessageCircle, Search, SquarePlus} from 'lucide-react';
@@ -7,11 +7,22 @@ import {NavLink} from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
 import { auth } from '../../../firebase';
+import { onAuthStateChanged } from "firebase/auth";
 
 const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
   const { t, i18n } = useTranslation();
 
-  const username = auth.currentUser?.displayName;
+  const [username, setUsername] = useState(null);
+
+  useEffect(() => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user?.displayName) {
+        setUsername(user.displayName);
+      }
+    });
+
+    return () => unsubscribe();
+  }, []);
 
   return (
     <div className='left-side'>
@@ -69,7 +80,10 @@ const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
           <div className='navHome'>{t('create')}</div>
         </NavLink>
 
-        <NavLink to={`/profile/${username}`} className='navlink'>
+        <NavLink
+          to={username ? `/profile/${username}` : '/home'}
+          className='navlink'
+        >
           <img src={profile_image} alt='profile image' className='profile_image' />
           <div className='navHome'>{t('profile')}</div>
         </NavLink>

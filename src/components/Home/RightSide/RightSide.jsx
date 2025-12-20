@@ -36,7 +36,7 @@ const RightSide = () => {
           </div>
 
           <div className='user-name'>
-            <Link to={`/profile/${username}`}  className='user-nickname'>olya__pla</Link>
+            <Link to={`/profile/${username}`}  className='user-nickname'>{username || 'Loading...'}</Link>
           </div>
 
         </div>

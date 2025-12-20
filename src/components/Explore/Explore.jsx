@@ -27,8 +27,13 @@ const Explore = () => {
         <p  tabIndex="0" onClick={handleClickNotPersonalized}>{t('discover.notPersonalized')}</p>
       </div>
       <div className='exploreContent'>
-        {explore.map((item, index) => (
-          <img key={index.id} alt='exploreImage' className='exploreImage' src={item.urls.regular}/>
+        {explore.map((item) => (
+          <img
+            key={item.id}
+            alt="exploreImage"
+            className="exploreImage"
+            src={item.urls.regular}
+          />
         ))}
       </div>
     </div>

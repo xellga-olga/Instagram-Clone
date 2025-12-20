@@ -5,7 +5,7 @@ const AddComment = () => {
   const { t } = useTranslation();
   return (
     <div className='addComment'>
-      <input placeholder={t('addComment.placeholder')} type='text'/>
+      <input id="username" name="username" placeholder={t('addComment.placeholder')} type='text'/>
     </div>
   );
 };

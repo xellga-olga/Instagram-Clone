@@ -41,6 +41,8 @@ const UserBio = () => {
     setIsSettingsOpen(false);
   };
 
+  const username = auth.currentUser?.displayName;
+
   return (
     <>
       <div className='userBio'>
@@ -51,7 +53,7 @@ const UserBio = () => {
 
         <div className="userBioInfo">
           <div className="topLine">
-            <span className="userBioNickname">olya__pla</span>
+            <span className="userBioNickname">{username || 'Loading...'}</span>
 
             <div className="btnProfileUserBio">
               <button>{t('userBio.editProfile')}</button>

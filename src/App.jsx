@@ -24,6 +24,7 @@ import Footer from "./components/Footer/Footer.jsx";
 import Saved_Audio from "./components/Profile/Saved_Profile/audio/Saved_Audio.jsx";
 import AuthDetails from "./components/Auth/AuthDetails.jsx";
 import Welcome from "./components/Auth/SignUp/Welcome.jsx";
+import MainLayout from "./MainLayout.jsx";
 
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
@@ -49,64 +50,40 @@ function App() {
     <ApiContext.Provider value={api}>
       <AuthDetails />
 
-
       <Routes>
-        <Route path='/login' element={<Login/>}/>
-        <Route path='/signup' element={<SignUp/>}/>
-        <Route path="/welcome" element={<Welcome/>} />
+
+        <Route path="/login" element={<Login />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/welcome" element={<Welcome />} />
+
+
+        <Route element={
+          <MainLayout
+            setSearchOpen={setSearchOpen}
+            setCreateOpen={setCreateOpen}
+            setNotificationsOpen={setNotificationsOpen}
+          />
+        }>
+          <Route path="/home" element={<Home />} />
+
+          <Route path="/profile/:username" element={<Profile />}>
+            <Route index element={<CardUserProfile />} />
+            <Route path="tagged" element={<Tagged_Profile />} />
+            <Route path="saved" element={<Saved_Profile />} />
+            <Route path="reels" element={<Reels_Profile />} />
+          </Route>
+
+          <Route path="/explore" element={<Explore />} />
+          <Route
+            path="/explore/not_personalized"
+            element={<NotPersonalized />}
+          />
+
+          <Route path="/reels" element={<Reels />} />
+          <Route path="/direct" element={<Messages />} />
+          <Route path="/saved/audio" element={<Saved_Audio />} />
+        </Route>
       </Routes>
-
-      {isMainRoute && (
-        <div className="App">
-          <div className='left-side-home'>
-            <LeftSide
-              setSearchOpen={setSearchOpen}
-              setCreateOpen={setCreateOpen}
-              setNotificationsOpen={setNotificationsOpen}
-            />
-          </div>
-
-          <div className='middle-side-home'>
-            <Routes>
-
-              <Route path='/home' element={<Home/>}/>
-
-              <Route path="/profile/:username" element={<Profile />}>
-                <Route index element={<CardUserProfile/>} />
-                <Route path="tagged" element={<Tagged_Profile />} />
-                <Route path="saved" element={<Saved_Profile />} />
-                <Route path="reels" element={<Reels_Profile />} />
-              </Route>
-
-              <Route path="/saved/audio" element={<Saved_Audio/>} />
-
-              <Route path='/explore' element={<Explore/>}/>
-              <Route path='/explore/not_personalized' element={<NotPersonalized/>}/>
-              <Route path='/reels' element={<Reels/>}/>
-              <Route path='/direct' element={<Messages />}/>
-
-            </Routes>
-
-            {searchOpen && (
-              <Search onClose={() => setSearchOpen(false)} />
-            )}
-
-            {createOpen && (
-              <Create onClose={() => setCreateOpen(false)} />
-            )}
-
-            {notificationsOpen && (
-              <Notifications onClose={() => setNotificationsOpen(false)} />
-            )}
-
-
-
-            <Footer />
-
-          </div>
-        </div>
-      )}
-
     </ApiContext.Provider>
   )
 }
