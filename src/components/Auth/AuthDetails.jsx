@@ -1,5 +1,5 @@
 import React, {useEffect, useState} from 'react';
-import { onAuthStateChanged, signOut } from 'firebase/auth';
+import { onAuthStateChanged } from 'firebase/auth';
 import {auth} from "../../firebase.js";
 import {useNavigate} from "react-router-dom";
 
@@ -11,10 +11,8 @@ const AuthDetails = () => {
   useEffect(() => {
 
     const listen = onAuthStateChanged(auth, (user) => {
-      if (user) {
-        navigate('/home', { replace: true })
-      } else {
-        navigate('/login', { replace: true })
+      if (!user) {
+        navigate('/login', { replace: true });
       }
     });
 
