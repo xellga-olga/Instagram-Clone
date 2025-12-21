@@ -1,7 +1,7 @@
 import React, {useState} from 'react';
 import {Box, Button, CircularProgress, Divider, Link, TextField, Typography} from '@mui/material';
 import inst_logo from '../../../assets/inst_logo.png';
-import {auth} from "../../../firebase.js";
+import {auth} from "../../../firebase storage/firebase.js";
 import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
 import {Link as RouterLink, useNavigate} from "react-router-dom";
 

@@ -1,23 +1,25 @@
 import React, {useEffect, useState} from 'react';
 import { onAuthStateChanged } from 'firebase/auth';
-import {auth} from "../../firebase.js";
-import {useNavigate} from "react-router-dom";
+import {auth} from "../../firebase storage/firebase.js";
+import {useNavigate, useLocation} from "react-router-dom";
 
 
 const AuthDetails = () => {
   // const [authUser, setAuthUser] = useState(null)
   const navigate = useNavigate();
+  const location = useLocation();
 
   useEffect(() => {
-
-    const listen = onAuthStateChanged(auth, (user) => {
-      if (!user) {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      // редирект только если пользователь аноним и не на публичных страницах
+      const publicPaths = ['/login', '/signup', '/welcome'];
+      if (!user && !publicPaths.includes(location.pathname)) {
         navigate('/login', { replace: true });
       }
     });
 
-    return listen;
-  }, [navigate]);
+    return unsubscribe;
+  }, [navigate, location.pathname]);
 
   return null;
 

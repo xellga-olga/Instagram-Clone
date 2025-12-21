@@ -3,7 +3,7 @@ import './rightSide.css'
 import profile_image from "../../../assets/profile_image.jpg";
 import {Link} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
-import {auth} from "../../../firebase.js";
+import {auth} from "../../../firebase storage/firebase.js";
 
 
 const RightSide = () => {

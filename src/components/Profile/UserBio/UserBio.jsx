@@ -1,5 +1,6 @@
 import React, {useEffect, useState} from 'react';
 import './userbio.css'
+import defaultAvatar from '../../../firebase storage/avatars/default-avatar.jpg'
 import profile_image from "../../../assets/profile_image.jpg";
 import {Settings} from 'lucide-react';
 
@@ -7,12 +8,14 @@ import {useTranslation} from 'react-i18next';
 import {Link} from "react-router-dom";
 
 import {signOut} from "firebase/auth";
-import {auth} from "../../../firebase.js";
+import { auth } from "../../../firebase storage/firebase.js";
 
 const UserBio = () => {
   const {t} = useTranslation();
 
   const [randomNumbers, setRandomNumbers] = useState(0);
+
+  const [avatarURL, setAvatarURL] = useState(auth.currentUser?.photoURL || defaultAvatar);
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
 
@@ -43,12 +46,51 @@ const UserBio = () => {
 
   const username = auth.currentUser?.displayName;
 
+  const handleAvatarUpload = (e) => {
+    const file = e.target.files[0];
+    if (!file) return;
+
+    const previewURL = URL.createObjectURL(file);
+    setAvatarURL(previewURL);
+  };
+
+  const deleteAvatar = () => {
+    setAvatarURL(defaultAvatar);
+  }
+
   return (
     <>
       <div className='userBio'>
 
         <div>
-          <img src={profile_image} alt='profile image' className='imageUserBio'/>
+          <div className="avatarUpload">
+            <img
+              src={avatarURL}
+              alt="profile image"
+              className="imageUserBio"
+            />
+            <button
+              type="button"
+              onClick={() => document.getElementById('avatarInput').click()}
+              className="changeAvatarBtn"
+            >
+              Изменить фото
+            </button>
+            <button
+              className='deleteAvatarBtn'
+              onClick={deleteAvatar}
+              type='button'
+            >
+              Удалить фото
+            </button>
+            <input
+              type="file"
+              accept="image/*"
+              id="avatarInput"
+              style={{ display: 'none' }}
+              onChange={handleAvatarUpload}
+            />
+          </div>
         </div>
 
         <div className="userBioInfo">

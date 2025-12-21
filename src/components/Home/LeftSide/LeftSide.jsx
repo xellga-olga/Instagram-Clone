@@ -6,7 +6,7 @@ import profile_image from '../../../assets/profile_image.jpg'
 import {NavLink} from "react-router-dom";
 import { useTranslation } from 'react-i18next';
 
-import { auth } from '../../../firebase';
+import { auth } from '../../../firebase storage/firebase.js';
 import { onAuthStateChanged } from "firebase/auth";
 
 const LeftSide = ({setSearchOpen, setCreateOpen, setNotificationsOpen}) => {
