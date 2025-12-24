@@ -1,9 +1,10 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './rightSide.css'
-import profile_image from "../../../assets/profile_image.jpg";
 import {Link} from 'react-router-dom';
 import { useTranslation } from 'react-i18next';
 import {auth} from "../../../firebase storage/firebase.js";
+import defaultAvatar from "../../../firebase storage/avatars/default-avatar.jpg";
+import {UserAvatarContext} from "../../../context/UserAvatarContext.jsx";
 
 
 const RightSide = () => {
@@ -27,12 +28,14 @@ const RightSide = () => {
 
   const username = auth.currentUser?.displayName;
 
+  const {avatar} = useContext(UserAvatarContext);
+
   return (
     <div className='right-side'>
       <div className='user-profile'>
         <div className='user-block'>
           <div className='user'>
-            <img src={profile_image} alt='profile image' className='profile_image_right-side'/>
+            <img src={avatar || defaultAvatar} alt='default-avatar' className='profile_image_right-side'/>
           </div>
 
           <div className='user-name'>

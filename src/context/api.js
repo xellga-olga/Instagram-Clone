@@ -1,5 +1,3 @@
-import Notifications from "../components/Notifications/Notifications.jsx";
-
 const createApi = ()=> (
   {
     getReels: async () => {

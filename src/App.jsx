@@ -26,6 +26,7 @@ import AuthDetails from "./components/Auth/AuthDetails.jsx";
 import Welcome from "./components/Auth/SignUp/Welcome.jsx";
 import MainLayout from "./MainLayout.jsx";
 
+
 function App() {
   const [searchOpen, setSearchOpen] = useState(false);
   const [createOpen, setCreateOpen] = useState(false);

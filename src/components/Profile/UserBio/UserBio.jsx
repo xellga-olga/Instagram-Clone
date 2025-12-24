@@ -1,7 +1,7 @@
-import React, {useEffect, useState} from 'react';
+import React, {useContext, useEffect, useState} from 'react';
 import './userbio.css'
 import defaultAvatar from '../../../firebase storage/avatars/default-avatar.jpg'
-import profile_image from "../../../assets/profile_image.jpg";
+// import profile_image from "../../../assets/profile_image.jpg";
 import {Settings} from 'lucide-react';
 
 import {useTranslation} from 'react-i18next';
@@ -9,6 +9,7 @@ import {Link} from "react-router-dom";
 
 import {signOut} from "firebase/auth";
 import { auth } from "../../../firebase storage/firebase.js";
+import {UserAvatarContext} from "../../../context/UserAvatarContext.jsx";
 
 const UserBio = () => {
   const {t} = useTranslation();
@@ -18,6 +19,8 @@ const UserBio = () => {
   const [avatarURL, setAvatarURL] = useState(auth.currentUser?.photoURL || defaultAvatar);
 
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
+
+  const { avatar, setAvatar } = useContext(UserAvatarContext);
 
 
 
@@ -51,11 +54,11 @@ const UserBio = () => {
     if (!file) return;
 
     const previewURL = URL.createObjectURL(file);
-    setAvatarURL(previewURL);
+    setAvatar(previewURL);
   };
 
   const deleteAvatar = () => {
-    setAvatarURL(defaultAvatar);
+    setAvatar(defaultAvatar);
   }
 
   return (
@@ -65,8 +68,7 @@ const UserBio = () => {
         <div>
           <div className="avatarUpload">
             <img
-              src={avatarURL}
-              alt="profile image"
+              src={avatar || defaultAvatar} alt='default-avatar'
               className="imageUserBio"
             />
             <button

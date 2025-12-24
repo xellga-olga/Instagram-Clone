@@ -4,11 +4,14 @@ import App from "./App.jsx";
 import "./index.css";
 import { BrowserRouter } from 'react-router-dom';
 import './i18n';
+import {UserAvatarProvider} from "./context/UserAvatarContext.jsx";
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
     <BrowserRouter>
-      <App />
+      <UserAvatarProvider>
+        <App />
+      </UserAvatarProvider>
     </BrowserRouter>
   </React.StrictMode>
 );
