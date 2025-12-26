@@ -8,6 +8,8 @@ import SendMessage from "./SendMessage/SendMessage.jsx";
 
 import { useTranslation } from 'react-i18next';
 
+import {auth} from "../../firebase.js";
+
 
 
 
@@ -30,6 +32,8 @@ const Messages = () => {
     })();
   }, [api]);
 
+  const username = auth.currentUser?.displayName;
+
 
   return (
     <>
@@ -38,7 +42,7 @@ const Messages = () => {
 
         <div className='header-mes'>
           <div className='nickName-mes'>
-            <p>olya__pla</p>
+            <p>{username || 'Loading...'}</p>
             <ChevronDown size={16} className='iconDownMes'/>
           </div>
           <div className='iconMes'>
