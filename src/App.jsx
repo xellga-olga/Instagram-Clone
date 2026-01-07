@@ -84,6 +84,13 @@ function App() {
           <Route path="/saved/audio" element={<Saved_Audio />} />
         </Route>
       </Routes>
+
+      {searchOpen && <Search onClose={() => setSearchOpen(false)} />}
+      {createOpen && <Create onClose={() => setCreateOpen(false)} />}
+      {notificationsOpen && (
+        <Notifications onClose={() => setNotificationsOpen(false)} />
+      )}
+
     </ApiContext.Provider>
   )
 }
