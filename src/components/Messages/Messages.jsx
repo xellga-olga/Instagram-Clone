@@ -8,7 +8,7 @@ import SendMessage from "./SendMessage/SendMessage.jsx";
 
 import { useTranslation } from 'react-i18next';
 
-import {auth} from "../../firebase.js";
+import {auth} from "../../firebase storage/firebase.js";
 
 
 

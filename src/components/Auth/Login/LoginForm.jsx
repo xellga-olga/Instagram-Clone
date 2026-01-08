@@ -7,6 +7,8 @@ import {Link as RouterLink, useNavigate} from "react-router-dom";
 
 import {collection, getDocs} from "firebase/firestore";
 
+import { sendPasswordResetEmail } from "firebase/auth";
+
 
 const LoginForm = () => {
   // const [email, setEmail] = useState("");
@@ -66,6 +68,38 @@ const LoginForm = () => {
       setLoading(false);
     }
   }
+
+  async function handleForgotPassword() {
+    if (!login.trim()) {
+      setError('Введите email или username');
+      return;
+    }
+    setError('')
+    setLoading(true);
+
+   let loginValue = login.trim().toLowerCase();
+   let emailToReset = loginValue;
+
+   try {
+     if (!loginValue.includes('@')) {
+       const foundEmail = await findEmailByUsername(loginValue);
+       if (!foundEmail) {
+         setError('Пользователь не найден')
+         return;
+       }
+       emailToReset = foundEmail;
+     }
+
+     await sendPasswordResetEmail(auth, emailToReset);
+     alert('Письмо для сброса пароля отправлено')
+   } catch (e) {
+     setError('Ошибка при отправке письма')
+   } finally {
+     setLoading(false);
+   }
+  }
+
+
 
   return (
     <Box component="form" onSubmit={handleLogin}
@@ -143,9 +177,11 @@ const LoginForm = () => {
 
       {/* Forgot password link */}
       <Link
-        href="#"
+        // href="#"
+        component='button'
         underline="none"
         sx={{fontSize: 12, color: "#00376b", mb: 2}}
+        onClick={handleForgotPassword}
       >
         Forgot password?
       </Link>
