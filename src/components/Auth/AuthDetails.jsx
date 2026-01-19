@@ -12,9 +12,12 @@ const AuthDetails = () => {
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       // редирект только если пользователь аноним и не на публичных страницах
-      const publicPaths = ['/login', '/signup', '/welcome'];
+      const publicPaths = ['/login', '/signup'];
       if (!user && !publicPaths.includes(location.pathname)) {
         navigate('/login', { replace: true });
+      }
+      if (user && publicPaths.includes(location.pathname)) {
+        navigate('/welcome', { replace: true });
       }
     });
 

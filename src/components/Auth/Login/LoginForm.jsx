@@ -2,10 +2,11 @@ import React, {useState} from "react";
 import {Box, Button, Divider, Link, TextField, Typography,} from "@mui/material";
 import inst_logo from "../../../assets/inst_logo.png";
 import {signInWithEmailAndPassword} from "firebase/auth";
+import { GoogleAuthProvider, signInWithPopup } from "firebase/auth";
 import {auth, db} from "../../../firebase storage/firebase.js";
 import {Link as RouterLink, useNavigate} from "react-router-dom";
 
-import {collection, getDocs} from "firebase/firestore";
+import { collection, getDocs, query, where, limit, setDoc, doc, serverTimestamp } from "firebase/firestore";
 
 import { sendPasswordResetEmail } from "firebase/auth";
 
@@ -19,62 +20,138 @@ const LoginForm = () => {
 
   const navigate = useNavigate();
 
-  async function findEmailByUsername(username) {
-    const usersSnapshot = await getDocs(collection(db, "users"));
+  const handleGoogleLogin = async () => {
+    try {
 
-    for (let doc of usersSnapshot.docs) {
-      const data = doc.data();
-      if (data.username === username) {
-        return data.email;
+      if (auth.currentUser) await auth.signOut();
+
+      const provider = new GoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = result.user;
+
+      const usersRef = collection(db, 'users');
+      const q = query(usersRef, where('email', '==', user.email), limit(1));
+      const snap = await getDocs(q);
+
+      if (snap.empty) {
+        await auth.signOut();
+        setError('Пользователь с таким email не зарегистрирован');
+        return;
       }
-    }
+      //
+      // UID из Firestore
+      const existingDoc = snap.docs[0];
+      const existingData = existingDoc.data();
+      const existingUid = existingDoc.id;
+      const usernameFromDb = existingData.username || user.displayName || '';
 
-    return null;
-  }
+      // Обновить Firestore
+      await setDoc(doc(db, 'users', existingUid), {
+        ...existingData,
+        email: user.email,
+        createdAt: serverTimestamp(),
+      });
+
+
+      setLogin('');
+      setPassword('');
+
+      navigate('/home');
+    } catch (err) {
+      console.error('Google login error:', err);
+      setError('Ошибка входа через Google');
+    }
+  };
+
+
 
   async function handleLogin(e) {
     e.preventDefault();
     if (loading) return;
 
-    setError('');
     setLoading(true);
+    setError('');
 
-    let loginValue = login.trim().toLowerCase();
-    let emailToLogin = loginValue;
+    const loginValue = login.trim().toLowerCase();
+    const passwordValue = password.trim();
+
+    if (!loginValue || !passwordValue) {
+      setError('Введите логин и пароль');
+      setLoading(false);
+      return;
+    }
 
     try {
-      //если нет @ — значит это username
+      let emailToLogin = loginValue;
+      // Only look up in Firestore if login is not an email
       if (!loginValue.includes('@')) {
-        const foundEmail = await findEmailByUsername(loginValue);
-
-        if (!foundEmail) {
-          setError('Пользователь не найден');
-          setLoading(false);
-          return;
-        }
-
+        const foundEmail = await findEmailByLogin(loginValue);
+        if (!foundEmail) throw new Error('USER_NOT_FOUND');
         emailToLogin = foundEmail;
       }
 
-      await signInWithEmailAndPassword(auth, emailToLogin, password);
-
-      setLogin('');
-      setPassword('');
+      await signInWithEmailAndPassword(auth, emailToLogin, passwordValue);
       navigate('/home');
-
     } catch (err) {
-      setError('Неверный логин или пароль');
+      console.log('Login error:', err);
+      setError(err.message === 'USER_NOT_FOUND' ? 'Пользователь не найден' : 'Неверный логин или пароль');
     } finally {
       setLoading(false);
     }
   }
 
+
+  async function findEmailByLogin(loginInput) {
+    if (loginInput.includes('@')) return loginInput;
+
+    try {
+      // username
+      let q = query(
+        collection(db, 'users'),
+        where('username', '==', loginInput),
+        limit(1)
+      );
+      let snap = await getDocs(q);
+      if (!snap.empty) {
+        console.log("Found user by username:", loginInput);
+        return snap.docs[0].data().email;
+      }
+    } catch (err) {
+      console.log("Error finding user by username:", err);
+    }
+
+    try {
+      // phone
+      let q = query(
+        collection(db, 'users'),
+        limit(1000)
+      );
+      let snap = await getDocs(q);
+      if (!snap.empty) {
+        for (let doc of snap.docs) {
+          let userData = doc.data();
+          let phoneNormalized = userData.phone ? userData.phone.replace(/\D/g, '') : '';
+          console.log("Comparing phone:", phoneNormalized, "with loginInput:", loginInput);
+          if (phoneNormalized === loginInput) {
+            console.log("Found user by phone:", loginInput);
+            return userData.email;
+          }
+        }
+      }
+    } catch (err) {
+      console.log("Error finding user by phone:", err);
+    }
+
+    return null;
+  }
+
   async function handleForgotPassword() {
     if (!login.trim()) {
-      setError('Введите email или username');
+      setError('Введите email');
       return;
     }
-    setError('')
+
+    setError('');
     setLoading(true);
 
    let loginValue = login.trim().toLowerCase();
@@ -82,12 +159,12 @@ const LoginForm = () => {
 
    try {
      if (!loginValue.includes('@')) {
-       const foundEmail = await findEmailByUsername(loginValue);
+       const foundEmail = await findEmailByLogin(loginValue);
        if (!foundEmail) {
          setError('Пользователь не найден')
-         return;
+       } else {
+         emailToReset = foundEmail;
        }
-       emailToReset = foundEmail;
      }
 
      await sendPasswordResetEmail(auth, emailToReset);
@@ -98,6 +175,8 @@ const LoginForm = () => {
      setLoading(false);
    }
   }
+
+
 
 
 
@@ -124,7 +203,7 @@ const LoginForm = () => {
         fullWidth
         variant="outlined"
         size="small"
-        label="Username or email"
+        label="Email, username or phone"
         sx={{mb: 2}}
         value={login}
         onChange={(e) => setLogin(e.target.value)}
@@ -173,6 +252,21 @@ const LoginForm = () => {
         }}
       >
         Log in with Facebook
+      </Button>
+
+      {/* Login with GOOGLE */}
+      <Button
+        fullWidth
+        variant="text"
+        sx={{
+          textTransform: "none",
+          fontWeight: "bold",
+          color: "#6e47d1",
+          mb: 2
+        }}
+        onClick={handleGoogleLogin}
+      >
+        Log in with Google
       </Button>
 
       {/* Forgot password link */}

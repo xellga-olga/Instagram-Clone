@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import {Box, Button, CircularProgress, Divider, Link, TextField, Typography} from '@mui/material';
 import inst_logo from '../../../assets/inst_logo.png';
 import {auth} from "../../../firebase storage/firebase.js";
-import {createUserWithEmailAndPassword, updateProfile} from 'firebase/auth';
+import { createUserWithEmailAndPassword, updateProfile } from 'firebase/auth';
+import { db } from '../../../firebase storage/firebase.js';
+import { doc, setDoc, serverTimestamp } from 'firebase/firestore';
 import {Link as RouterLink, useNavigate} from "react-router-dom";
 
 // Валидация имени пользователя: только строчные буквы, цифры, точки и подчёркивания
@@ -36,6 +38,7 @@ const SignUpForm = () => {
   const [password, setPassword] = useState('');
   const [username, setUsername] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
+  const [phone, setPhone] = useState('');
   const [error, setError] = useState('');
   const [usernameError, setUsernameError] = useState('');
   const [passwordError, setPasswordError] = useState('');
@@ -46,7 +49,7 @@ const SignUpForm = () => {
 
   const usernameRules = 'Допустимо: (a–z), (0–9), (.), (_). Без пробелов. Max 10 символов.';
 
-  function register(e) {
+  async function register(e) {
     e.preventDefault();
     setError('');
     setPasswordError('');
@@ -75,38 +78,59 @@ const SignUpForm = () => {
 
     setLoading(true);
 
-    createUserWithEmailAndPassword(auth, email.trim().toLowerCase(), password)
-      .then((userCredential) => {
-        const user = userCredential.user;
-        return updateProfile(user, {displayName: username});
-      })
-      .then(() => {
-        setError('');
-        setEmail('');
-        setPassword('');
-        setUsername('');
-        setConfirmPassword('');
+    try {
+      console.log('Starting user creation with email and password');
+      const userCredential = await createUserWithEmailAndPassword(auth, email.trim().toLowerCase(), password);
+      console.log('User created:', userCredential.user.uid);
+      const user = userCredential.user;
+      console.log('Updating user profile displayName to:', username);
+      await updateProfile(user, {displayName: username});
+      console.log('User profile updated');
 
-        navigate('/welcome');
-      })
-      .catch((err) => {
-        let message = '';
-        if (err.code === 'auth/email-already-in-use') {
-          message = 'Этот email уже используется.';
-        } else if (err.code === 'auth/invalid-email') {
-          message = 'Неверный формат email.';
-        } else if (err.code === 'auth/weak-password') {
-          message = 'Пароль слишком слабый. Минимум 6 символов.';
-        } else {
-          message = 'Ошибка при создании аккаунта. Попробуйте ещё раз.';
+      const currentUser = auth.currentUser;
+      if (currentUser) {
+        try {
+          const normalizedPhone = phone ? phone.replace(/\D/g, '') : '';
+          await setDoc(doc(db, 'users', currentUser.uid), {
+            username: username,
+            email: email.trim().toLowerCase(),
+            phone: normalizedPhone,
+            createdAt: serverTimestamp()
+          });
+          console.log('Пользовательские данные записаны в Firestore.');
+        } catch (firestoreError) {
+          console.error('Ошибка при записи в Firestore:', firestoreError);
         }
+      }
 
-        setError(message);
-        if (message.toLowerCase().includes('пароль') || err.code === 'auth/weak-password') {
-          setPasswordError(message);
-        }
-      })
-      .finally(() => setLoading(false));
+      setError('');
+      setEmail('');
+      setPassword('');
+      setUsername('');
+      setConfirmPassword('');
+      setPhone('');
+
+    } catch (err) {
+      let message = '';
+      if (err.code === 'auth/email-already-in-use') {
+        message = 'Этот email уже используется.';
+      } else if (err.code === 'auth/invalid-email') {
+        message = 'Неверный формат email.';
+      } else if (err.code === 'auth/weak-password') {
+        message = 'Пароль слишком слабый. Минимум 6 символов.';
+      } else {
+        message = 'Ошибка при создании аккаунта. Попробуйте ещё раз.';
+      }
+
+      setError(message);
+      if (message.toLowerCase().includes('пароль') || err.code === 'auth/weak-password') {
+        setPasswordError(message);
+      }
+    } finally {
+      setLoading(false);
+    }
+    // Navigate to welcome after successful registration
+    navigate('/welcome');
   }
 
 
@@ -149,6 +173,14 @@ const SignUpForm = () => {
 
       <Divider sx={{width: '100%', my: 1}}>OR</Divider>
 
+      <TextField
+        fullWidth
+        variant="outlined"
+        size="small"
+        label="Phone number"
+        value={phone}
+        onChange={(e) => setPhone(e.target.value)}
+      />
 
       <TextField
         fullWidth
